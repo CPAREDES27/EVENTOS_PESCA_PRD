@@ -18,7 +18,7 @@
          </Page>
       </masterPages>
       <detailPages>
-         <Page title="Detalle de Mareas" backgroundDesign="Transparent" id="ListaPrincipal">
+         <Page title="Lista de Mareas" backgroundDesign="Transparent" id="ListaPrincipal">
             <content>
                <ObjectHeader id="idObjectHeader" icon="sap-icon://factory" titleActive="false" backgroundDesign="Translucent" numberUnit="Tn" numberState="Success" number="{ListaMareas>/Utils/TotalPescDecl}"/>
                <IconTabBar id="idIconTabBar" expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Solid" upperCase="false" visible="true" select="onSelectTab" selectedKey="{ListaMareas>/Utils/SelectedKey}">

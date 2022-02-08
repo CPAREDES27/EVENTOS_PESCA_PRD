@@ -142,6 +142,7 @@ sap.ui.define([
                 modelo.setData(initData);
                 modelo.refresh();
                 history.go(-1);
+                this.actualizarMareas(false);
             }else{
                 var mssg = this.oBundle.getText("CONFIRMSAVEMSSG");
                 MessageBox.confirm(mssg, {
@@ -152,6 +153,7 @@ sap.ui.define([
                             modelo.setData(initData);
                             modelo.refresh();
                             history.go(-1);
+                            this.actualizarMareas(false);
                         }
                     }
                 })
@@ -1166,6 +1168,8 @@ sap.ui.define([
                             BusyIndicator.hide();
                             await me.SaveReserva();
                             me.getNuevaMareaDialog().close();
+                        }else{
+                            BusyIndicator.hide();
                         }
                     }
                 })
@@ -1191,6 +1195,8 @@ sap.ui.define([
                             BusyIndicator.hide();
                             await me.SaveVentaComb();
                             me.getNuevaMareaDialog().close();
+                        }else{
+                            BusyIndicator.hide();
                         }
                     }
                 })

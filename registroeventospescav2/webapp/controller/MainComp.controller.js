@@ -296,6 +296,8 @@ sap.ui.define([
 
         onNavInicio: async function (evt) {
             BusyIndicator.show(0);
+            var modelo = this.getOwnerComponent().getModel("DetalleMarea");
+            modelo.setProperty("/Utils/BuscarEmba", false);
             //var view = evt.getSource().getParent().getParent().getProperty("viewName");
             //await this.onActualizaMareas();
             var currentUser = await this.getCurrentUser();
@@ -310,8 +312,6 @@ sap.ui.define([
                     }
                 }
             }
-
-            var modelo = this.getOwnerComponent().getModel("DetalleMarea");
             var oStore = jQuery.sap.storage(jQuery.sap.storage.Type.Session);
             var cdpta = oStore.get("CDPTA");
             var cdtem = oStore.get("CDTEM");
@@ -342,6 +342,7 @@ sap.ui.define([
             BusyIndicator.show(0);
             var view = evt.getSource().getParent().getParent().getProperty("viewName");
             var modelo = this.getOwnerComponent().getModel("DetalleMarea");
+            modelo.setProperty("/Utils/BuscarEmba", false);
             var marea = modelo.getProperty("/Form/NRMAR");
             /*var estadoMarea = modelo.getProperty("/Form/ESMAR");
             var embarcacion = modelo.getProperty("/Form/CDEMB");
@@ -2405,7 +2406,7 @@ sap.ui.define([
                         tmpElement.DESCLINK = "Editar"
                     }*/
 
-                    totalPescaDeclarada += tmpElement.CNPCM;
+                    totalPescaDeclarada += Number(tmpElement.CNPCM) ? Number(tmpElement.CNPCM) : 0;
 
                     dataPropios.push(tmpElement);
                 }
@@ -2488,6 +2489,12 @@ sap.ui.define([
         },
 
         onActualizaMareas: async function () {
+            this.actualizarMareas(true);
+            /*else {
+                MessageBox.information(this.oBundle.getText("ERRORSLECCIONEPLANTA"));
+            }*/
+        },
+        actualizarMareas : async function(msgActu){
             BusyIndicator.show(0);
             var me = this;
             var currentUser = await me.getCurrentUser();
@@ -2501,14 +2508,13 @@ sap.ui.define([
                     this.validarDataMareas(listaMareas);
                     this.filtarMareas(cdtem, cdpta);
                     BusyIndicator.hide();
-                    MessageBox.success("Se actualizó correctamente...", {
-                        title: "Exitoso"
-                    });
+                    if(msgActu){
+                        MessageBox.success("Se actualizó correctamente...", {
+                            title: "Exitoso"
+                        });
+                    }
                 }
             } 
-            /*else {
-                MessageBox.information(this.oBundle.getText("ERRORSLECCIONEPLANTA"));
-            }*/
         },
 
         getSerachingHelpComponents: function (oModel, sAyudaBusqId) {
@@ -3078,6 +3084,7 @@ sap.ui.define([
                     modelo.setProperty("/Config/visibleBtnEventos", false);
                     modelo.setProperty("/Config/readOnlyUbicPesca", false);
                     modelo.setProperty("/Config/readOnlyObs", false);
+                    modelo.refresh();
                     this.setVisibleBtnSave(false, false);
                 }
                 
@@ -3092,9 +3099,10 @@ sap.ui.define([
                     modelo.setProperty("/Config/readOnlyHorFin", false);
                     modelo.setProperty("/Config/readOnlyFecHoEta", false);
                     modelo.setProperty("/Config/readOnlyFechIni", false);
+                    modelo.refresh();
                 }
             }
-
+            modelo.refresh();
             return bOk;
         },
 

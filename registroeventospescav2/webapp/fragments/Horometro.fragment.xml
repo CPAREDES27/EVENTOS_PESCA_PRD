@@ -2,7 +2,7 @@
 
 	<Panel id="0010" expandable="false">
 		<content>
-			<Table id= "prue" width="45rem" noDataText="No data"
+			<Table id= "prue" width="45rem" noDataText="No data" keyboardMode="Edit"
 			 showSeparators="All" growing="true" 
 			 items="{path:'eventos>/ListaHorometros',templateShareable:true}"
 			 growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">

@@ -508,7 +508,7 @@ sap.ui.define([
                 if (data.length > 0) {
                     for (let index = 0; index < data.length; index++) {
                         const element = data[index];
-                        totalPescaDeclarada += element.CNPCM;
+                        totalPescaDeclarada += Number(element.CNPCM) ? Number(element.CNPCM) : 0;
                     }
                 }
                 /*} else {
@@ -944,11 +944,13 @@ sap.ui.define([
             },
 
             onTest: function () {
-                TasaBackendService.test().then(function (response) {
-                    console.log("Response: ", response);
-                }).catch(function (error) {
-                    console.log("ERROR: DetalleMarea.onTest - ", error);
-                });
+                console.log("Hiciste click");
+                window.open('https://tasaqas.launchpad.cfapps.us10.hana.ondemand.com/site/tasapqas#pescaDeclarada-display?sap-ui-app-id-hint=saas_approuter_com.tasa.pdeclarada', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+                // TasaBackendService.test().then(function (response) {
+                //     console.log("Response: ", response);
+                // }).catch(function (error) {
+                //     console.log("ERROR: DetalleMarea.onTest - ", error);
+                // });
             },
             cargarFilas : function(event) {
                 console.log(event);

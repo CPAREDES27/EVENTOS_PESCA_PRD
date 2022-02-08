@@ -14,7 +14,7 @@
                                     <Label text="Planta" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                                 </form:label>
                                 <form:fields>
-                                    <ComboBox id="cbxPlantas" width="auto" items="{ComboModel>/Plantas}" selectedKey="{DetalleMarea>/Form/CDPTA}" change="onActionSelPlanta">
+                                    <ComboBox id="cbxPlantas2" width="auto" items="{ComboModel>/Plantas}" selectedKey="{DetalleMarea>/Form/CDPTA}" change="onActionSelPlanta">
                                         <items>
                                             <core:Item text="{ComboModel>DESCR}" enabled="true" key="{ComboModel>CDPTA}"/>
                                         </items>
