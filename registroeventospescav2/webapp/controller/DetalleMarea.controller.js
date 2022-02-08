@@ -245,6 +245,7 @@ sap.ui.define([
             var horoSiniAccide = ["H", "8", "T"];
             var zarpeSiniAccid = ["1", "8"];
             var llegArriSinAcc = ["2", "5", "8"];
+            var llegArriSinAcc2 = ["5", "2", "8"];
             var calaSalSinAcci = ["3", "4", "8"];
             var motivoCalaSDes = ["4", "5", "6"];
             var zarpEspeSinAcc = ["1", "7", "8"];
@@ -282,7 +283,7 @@ sap.ui.define([
                         }else if (tipoEvento == "2" || tipoEvento == "3"){
                             await this.createFixedValuesEventos(calaSalSinAcci);
                         }else if(tipoEvento == "4"){
-                            await this.createFixedValuesEventos(llegArriSinAcc);
+                            await this.createFixedValuesEventos(llegArriSinAcc2);
                         }else if(tipoEvento == "5" || tipoEvento == "6"){
                             if(tipoEvento == "5" && (ultimoEvento.CDMNP || motivoCalaSDes.includes(motMarea))){
                                 await this.createFixedValuesEventos(zarpEspeSinAcc);
@@ -1156,8 +1157,12 @@ sap.ui.define([
                 var me = this;
                 MessageBox.confirm(mssg, {
                     title: me.oBundle.getText("CONFIRMSAVETITLE"),
+                    actions: ["Aceptar", "Cancelar"],
+                    initialFocus: "Aceptar",
+                    emphasizedAction: "Aceptar",
                     onClose: async function (evt) {
-                        if (evt == "OK") {
+                        console.log(evt);
+                        if (evt == "Aceptar") {
                             BusyIndicator.hide();
                             await me.SaveReserva();
                             me.getNuevaMareaDialog().close();
@@ -1177,8 +1182,12 @@ sap.ui.define([
                 var me = this;
                 MessageBox.confirm(mssg, {
                     title: me.oBundle.getText("CONFIRMSAVETITLE"),
+                    actions: ["Aceptar", "Cancelar"],
+                    initialFocus: "Aceptar",
+                    emphasizedAction: "Aceptar",
                     onClose: async function (evt) {
-                        if (evt == "OK") {
+                        console.log(evt);
+                        if (evt == "Aceptar") {
                             BusyIndicator.hide();
                             await me.SaveVentaComb();
                             me.getNuevaMareaDialog().close();
@@ -1223,6 +1232,7 @@ sap.ui.define([
                     onClose: async function () {
                         BusyIndicator.hide();
                         await me.obtenerVentas(true);
+                        me.getNuevaResVenDialog().close();
                     }
                 });
             } else {
@@ -1449,8 +1459,14 @@ sap.ui.define([
             }
         },
 
-        onMostrarFechaFin: function () {
+        onMostrarFechaFin: function (evt) {
             var modelo = this.getOwnerComponent().getModel("DetalleMarea");
+            //hacer que se limpie si ingresa un calor incorrecto  //EACOSTA 
+            let estMarea = modelo.getProperty("/Form/ESMAR");
+            modelo.setProperty("/Form/ESMAR", null)
+            modelo.setProperty("/Form/ESMAR", estMarea);
+            modelo.refresh();
+            //*********************************************** */
             var motivoMarea = modelo.getProperty("/Form/CDMMA");
             var estadoMarea = modelo.getProperty("/Form/ESMAR");
             //var listaMensajes = modelo.getProperty("/Utils/MessageItemsDM");

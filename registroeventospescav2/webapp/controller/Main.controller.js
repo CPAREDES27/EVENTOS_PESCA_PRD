@@ -961,9 +961,9 @@ sap.ui.define([
                     if(element2.getAggregation("cells")[7].getProperty("text") === "Abierto"){
                         element2.addStyleClass("tabla");
                     }else if (element2.getAggregation("cells")[7].getProperty("text") === "Cerrado"){
-                        element2.addStyleClass("tabla2");
+                        element2.addStyleClass("tabla1");
                     }else{
-                        element2.addStyleClass("tabla3");
+                        element2.addStyleClass("tabla2");
                     }
                         
                 }

@@ -99,7 +99,7 @@
                      <IconTabFilter id="itfTerceros" icon="sap-icon://group" iconColor="Default" text="Terceros" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false" count="{ListaMareas>/Utils/CountTerceros}">
                         <content>
                            
-                           <table:Table id="tblMareasTerceros" rows="{path:'ListaMareas>/TercerosFiltro', templateShareable:true}" selectionMode="None" class="sapUiResponsiveMargin" visibleRowCount="{ListaMareas>/Utils/visibleRowsTerceros}">
+                           <table:Table id="tblMareasTerceros" rows="{path:'ListaMareas>/TercerosFiltro', templateShareable:true}" selectionMode="None" class="sapUiResponsiveMargin" visibleRowCount="{ListaMareas>/Utils/visibleRowsTerceros}" rowsUpdated = "cargarFilas">
                               <table:columns>
                                  <table:Column sortProperty="NRO" width="3%">
                                      <Label text="Nro."/>

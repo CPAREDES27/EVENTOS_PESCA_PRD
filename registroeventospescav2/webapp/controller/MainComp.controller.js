@@ -1068,6 +1068,7 @@ sap.ui.define([
                 CDPTA: pescaDescargada.CDPTA,
                 INPRP: element.INPRP,
                 CDSPC: pescaDescargada.CDSPC,
+                CDLDS: pescaDescargada.CDLDS,
                 CDPDG: pescaDescargada.CDPDG,
                 CNPCM: pescaDescargada.CNPCM,
                 CNPDS: pescaDescargada.CNPDS,
@@ -1663,6 +1664,7 @@ sap.ui.define([
             modelo.setProperty("/Form/FCCRE", Utils.strDateToSapDate(Utils.dateToStrDate(new Date())));
             modelo.setProperty("/Form/HRCRE", Utils.strHourToSapHo(Utils.dateToStrHours(new Date())));
             modelo.setProperty("/Form/ATCRE", await this.getCurrentUser());
+            modelo.setProperty("/Form/CDPTA", oStore.get('CDPTA')); //EACOSTA -- se adiciona campo por q se limpia cuando entra a este metodo
             modelo.setProperty("/Config/visibleArmador", true);
             modelo.setProperty("/Config/visibleBtnArmador", true);
             modelo.setProperty("/Config/visibleBtnEventos", true);
@@ -2603,7 +2605,7 @@ sap.ui.define([
 
             if (oRouter.indexOf("localhost") !== -1) {
 
-                service = 'https://cf-nodejs-cheerful-bat-js.cfapps.us10.hana.ondemand.com/api/'
+                service = 'https://cf-nodejs-qas.cfapps.us10.hana.ondemand.com/api/'
 
             }
 

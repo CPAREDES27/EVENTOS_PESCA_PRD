@@ -125,6 +125,7 @@
                     "name": "DetalleEvento",
                     "view": "DetalleEvento",
                     "pattern": "DetalleEvento",
+                    "viewId" :"evento",
                     "targetAggregation": "pages",
                     "controlId": "app"
                 },

@@ -1863,6 +1863,7 @@ sap.ui.define([
                                     pescaDescElement.CDSPC = datos.CDSPC;
                                     pescaDescElement.DSSPC = datos.DSSPC;
                                     pescaDescElement.CDLDS = datos.CDLDS;
+                                    pescaDescElement.CDPDG = datos.CDPDG;
                                     pescaDescElement.DESC_CDLDS = datos.DESC_CDLDS;
                                     pescaDescElement.CNPDS = datos.CNPDS;
                                     pescaDescElement.PESACUMOD = datos.CNPDS;

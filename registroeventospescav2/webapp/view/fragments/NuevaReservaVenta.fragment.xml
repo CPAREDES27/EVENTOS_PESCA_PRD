@@ -99,7 +99,7 @@
 											</header>
 											<footer/>
 										</Column>
-										<Column width="20%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<Column width="20%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false" visible="{DetalleMarea>/Config/visibleAlmacenReserva}">
 											<header>
 												<Text text="Almacén" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 											</header>
@@ -120,7 +120,7 @@
 														visible="true"/>
 												<Input value="{DetalleMarea>CNSUM}" description="{DetalleMarea>DSUMD}" showValueHelp="false" width="auto" valueStateText="Invalid entry"/>
 												<Text text="{DetalleMarea>WERKS}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-												<ComboBox id="cbxPlantas" width="auto" items="{DetalleMarea>/ConfigReservas/Almacenes}" selectedKey="{DetalleMarea>/Suministro/0/CDALE}" change="onSelectAlmacen">
+												<ComboBox id="cbxPlantas" width="auto" items="{DetalleMarea>/ConfigReservas/Almacenes}" selectedKey="{DetalleMarea>/Suministro/0/CDALE}" change="onSelectAlmacen" visible="{DetalleMarea>/Config/visibleAlmacenReserva}">
                                         			<items>
                                             			<core:Item text="{DetalleMarea>DSALM}" enabled="true" key="{DetalleMarea>CDALE}"/>
                                         			</items>
