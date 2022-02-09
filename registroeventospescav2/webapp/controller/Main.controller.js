@@ -85,12 +85,15 @@ sap.ui.define([
                 this.url = this.objetoHelp[0].url;
                 await this.callConstantes();
 
+                // this.byId("tblMareasPropios").refreshRows();
+                // this.byId("tblMareasTerceros").refreshRows();
                 var oRenderer = sap.ushell.Container.getRenderer("fiori3");
 
                 console.log("RENDERER: ", oRenderer);
                 oRenderer.hideHeaderItem("backBtn", false);
 
                 BusyIndicator.hide();
+
                 
                 /*
                 BusyIndicator.show(0);
@@ -109,7 +112,8 @@ sap.ui.define([
 
             callConstantes: async function () {
                 BusyIndicator.show(0);
-                var modeloConstantes = this.getOwnerComponent().getModel("DetalleMarea");
+                //var modeloConstantes = this.getOwnerComponent().getModel("DetalleMarea");
+                var modeloConstantes2 = this.getOwnerComponent().getModel("DetalleMarea");//busquedaEmba
                 var body = {
                     "nombreConsulta": "CONSGENCONST",
                     "p_user": await this.getCurrentUser(),
@@ -126,7 +130,7 @@ sap.ui.define([
                     })
                     .then(resp => resp.json()).then(data => {
                         var host = this.url + data.data[0].LOW;
-                        modeloConstantes.setProperty("/HelpHost", host);
+                        modeloConstantes2.setProperty("/HelpHost", host);
                     }).catch(error => console.log(error)
                     );
                 BusyIndicator.hide();
@@ -541,7 +545,7 @@ sap.ui.define([
             onAbrirAyudaEmbarcacion: async function (evt) {
                 //this.getEmbaDialog().open();
                 BusyIndicator.show(0);
-                var modeloConst = this.getOwnerComponent().getModel("DetalleMarea");
+                var modeloConst = this.getOwnerComponent().getModel("DetalleMarea");//busquedaEmba
                 var usuario = await this.getCurrentUser();
                 modeloConst.setProperty("/user/name", usuario);
                 modeloConst.setProperty("/Utils/BuscarEmba", true);
@@ -926,7 +930,8 @@ sap.ui.define([
 
             getDataPopUp: async function(value){
                 var modelo = this.getOwnerComponent().getModel("DetalleMarea");
-                var flagBuscEmba = modelo.getProperty("/Utils/BuscarEmba");
+                var modeloAydBusqEmba = this.getOwnerComponent().getModel("DetalleMarea");//busquedaEmba
+                var flagBuscEmba = modeloAydBusqEmba.getProperty("/Utils/BuscarEmba");
                 if(value && flagBuscEmba){
                     var embarcacion = modelo.getProperty("/Form/CDEMB");
                     await this.verificarCambiosCodigo("EMB", embarcacion);
@@ -971,6 +976,8 @@ sap.ui.define([
                     }
                         
                 }
+                // this.byId("tblMareasPropios").refreshRows();
+                // this.byId("tblMareasTerceros").refreshRows();
                     
                 
 

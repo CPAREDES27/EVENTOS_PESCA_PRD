@@ -1220,6 +1220,7 @@ sap.ui.define([
                     onClose: async function () {
                         BusyIndicator.hide();
                         await me.obtenerReservas(true);
+                        me.getReviewDialog().close();
                     }
                 });
             } else {

@@ -2,7 +2,7 @@
 
 	<Panel id="0006" expandable="false">
 		<content>
-			<Table id="P02" width="auto" noDataText="No data" mode="None" 
+			<Table id="P02" width="auto" noDataText="No data" mode="None"  keyboardMode="Edit"
 			items="{eventos>/ListaBodegas}"
 			showSeparators="All" growing="true" growingThreshold="20" 
 			growingScrollToLoad="true" class="sapUiResponsiveMargin">

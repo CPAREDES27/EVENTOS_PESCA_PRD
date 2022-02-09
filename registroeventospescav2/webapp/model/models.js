@@ -564,6 +564,22 @@ sap.ui.define([
             var oModel = new JSONModel(data);
 			return oModel;
         },
+        busquedaEmba: function(){
+            var data = {
+                HelpHost: "",
+                input: null,
+                idDialogComp: null,
+                helpArma: null,
+                user: {
+                    name: ""
+                },
+                Utils:{
+                    BuscarEmba: false
+                }
+            };
+            var oModel = new JSONModel(data);
+			return oModel;
+        },
 
 	};
 });

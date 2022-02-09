@@ -297,7 +297,8 @@ sap.ui.define([
         onNavInicio: async function (evt) {
             BusyIndicator.show(0);
             var modelo = this.getOwnerComponent().getModel("DetalleMarea");
-            modelo.setProperty("/Utils/BuscarEmba", false);
+            var modeloAydBusqEmba = this.getOwnerComponent().getModel("DetalleMarea");//busquedaEmba
+            modeloAydBusqEmba.setProperty("/Utils/BuscarEmba", false);
             //var view = evt.getSource().getParent().getParent().getProperty("viewName");
             //await this.onActualizaMareas();
             var currentUser = await this.getCurrentUser();
@@ -342,7 +343,8 @@ sap.ui.define([
             BusyIndicator.show(0);
             var view = evt.getSource().getParent().getParent().getProperty("viewName");
             var modelo = this.getOwnerComponent().getModel("DetalleMarea");
-            modelo.setProperty("/Utils/BuscarEmba", false);
+            var modeloAydBusqEmba = this.getOwnerComponent().getModel("DetalleMarea");//busquedaEmba
+            modeloAydBusqEmba.setProperty("/Utils/BuscarEmba", false);
             var marea = modelo.getProperty("/Form/NRMAR");
             /*var estadoMarea = modelo.getProperty("/Form/ESMAR");
             var embarcacion = modelo.getProperty("/Form/CDEMB");
@@ -988,7 +990,7 @@ sap.ui.define([
             let mod = this.getOwnerComponent().getModel("DetalleMarea");
             //let elementSel = mod.getProperty("/Eventos/LeadSelEvento");
             let ListaEventos = mod.getProperty("/Eventos/Lista");
-            var bodegas = elementParam.ListaBodegas;//modelo de bodegas
+            var bodegas = elementParam.ListaBodegas ? elementParam.ListaBodegas  : [];//modelo de bodegas
             var lista = pescaBodega_model;
             for (let index = 0; index < bodegas.length; index++) {
                 const element = bodegas[index];

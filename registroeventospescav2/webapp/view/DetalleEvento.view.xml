@@ -98,8 +98,8 @@
 							<ToolbarSpacer width="" />
 							<Button text="Remover evento" type="Reject" icon="" iconFirst="true" width="auto" enabled="true" visible="{visible>/LinkRemover}" iconDensityAware="false" press=".removerEvento_button" />
 							<Button text="Descartar cambios" type="Reject" icon="" iconFirst="true" width="auto" enabled="true" visible="{visible>/LinkDescartar}" iconDensityAware="false" press=".descartarCambios_button" />
-							<Button text="Atras" type="Default" icon="sap-icon://nav-back" press=".validarCambios" />
-							<Button text="Guardar" type="Accept" icon="sap-icon://save" press=".SaveAll" />
+							<Button text="Atras" type="Emphasized" icon="sap-icon://nav-back" press=".validarCambios" />
+							<Button text="Guardar" type="Emphasized" icon="sap-icon://save" press=".SaveAll" />
 						</content>
 					</OverflowToolbar>
 				</footer>

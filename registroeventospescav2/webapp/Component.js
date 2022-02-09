@@ -45,6 +45,9 @@ sap.ui.define([
 			//set constants utilitis model
 			this.setModel(models.createConstantsUtility(), "ConstantsUtility");
 
+			//set ayuda de buqueda embarcacion
+			this.setModel(models.busquedaEmba(), "busquedaEmba");
+
 			//set form model
 			sap.ui.getCore().setModel(models.createFormModel(), "Form");
 
@@ -77,6 +80,7 @@ sap.ui.define([
 
 			//set constantes model
 			sap.ui.getCore().setModel(models.createConstantesModel(), "Constantes");
+
 
 		}
 
