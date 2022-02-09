@@ -144,16 +144,18 @@ sap.ui.define([
                 history.go(-1);
                 this.actualizarMareas(false);
             }else{
+                let that = this;
                 var mssg = this.oBundle.getText("CONFIRMSAVEMSSG");
                 MessageBox.confirm(mssg, {
                     title: "Descartar Cambios",
                     onClose: function(evt){
                         if(evt == "OK"){
+                            console.log("entrooooooo");
                             var initData = oStore.get('InitData');
                             modelo.setData(initData);
                             modelo.refresh();
                             history.go(-1);
-                            this.actualizarMareas(false);
+                            that.actualizarMareas(false);
                         }
                     }
                 })

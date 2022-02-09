@@ -2484,6 +2484,7 @@ sap.ui.define([
             //this.getView().byId("idObjectHeader").setNumber(ttPescaDecl);
             modelo.setProperty("/Utils/TotalPescDecl", ttPescaDecl);
             modelo.setProperty("/Utils/SelectedKey", "itfPropios");
+            this.cargarDatosResumenMarea();
             //this.getView().byId("idIconTabBar").setSelectedKey("itfPropios");
             modelo.refresh();
         },
@@ -3060,7 +3061,7 @@ sap.ui.define([
                     if(element.CDTEV == "6"){
                         modelo.setProperty("/Config/visibleBtnArmador", false);
                         modelo.setProperty("/Config/visibleEnlNueArmador", false);
-                        if(esmar = "A" && motMar == "2" && element.INPRP == "P" && element.NRDES){
+                        if(esmar == "A" && motMar == "2" && element.INPRP == "P" && element.NRDES){
                             await this.verificarErroresMarea(element.NRDES);
                         }
                     }
@@ -3374,6 +3375,38 @@ sap.ui.define([
             }
 
 
+        },
+        cargarDatosResumenMarea :function(){
+            let modeloMareas = this.getOwnerComponent().getModel("ListaMareas");
+            let dataPropios = [];
+            let dataTerceros = [];
+            dataPropios = modeloMareas.getProperty("/PropiosFiltro");
+            dataTerceros = modeloMareas.getProperty("/TercerosFiltro");
+            let cantPropios = Number(0);
+            let cantTerceros = Number(0);
+            let cantPdclTotal = Number(0);
+
+            if (dataPropios.length > 0) {
+                for (let index = 0; index < dataPropios.length; index++) {
+                    const element = dataPropios[index];
+                    cantPropios += Number(element.CNPCM) ? Number(element.CNPCM) : 0;
+                }
+            }
+            if (dataTerceros.length > 0) {
+                for (let index = 0; index < dataTerceros.length; index++) {
+                    const element = dataTerceros[index];
+                    cantTerceros += Number(element.CNPCM) ? Number(element.CNPCM) : 0;
+                }
+            }
+            cantPdclTotal = cantPropios + cantTerceros;
+
+
+
+            modeloMareas.setProperty("/Utils/TotalPescDecl", cantPdclTotal);
+            modeloMareas.setProperty("/Utils/CantEmbProp", dataPropios.length);
+            modeloMareas.setProperty("/Utils/CantEmbTerc", dataTerceros.length);
+            modeloMareas.setProperty("/Utils/PescaDclPropio", cantPropios);
+            modeloMareas.setProperty("/Utils/PescaDclTercero", cantTerceros);
         }
 
 

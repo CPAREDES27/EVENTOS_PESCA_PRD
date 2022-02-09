@@ -20,7 +20,27 @@
       <detailPages>
          <Page title="Lista de Mareas" backgroundDesign="Transparent" id="ListaPrincipal">
             <content>
-               <ObjectHeader id="idObjectHeader" icon="sap-icon://factory" titleActive="false" backgroundDesign="Translucent" numberUnit="Tn" numberState="Success" number="{ListaMareas>/Utils/TotalPescDecl}"/>
+               <ObjectHeader class="sapUiResponsivePadding--header" id="idObjectHeader" icon="sap-icon://factory" titleActive="false" backgroundDesign="Translucent" numberUnit="Tn" numberState="Success" number="TOTAL DE PESCA DECLARADA : {ListaMareas>/Utils/TotalPescDecl}"
+               responsive="true">
+                  <statuses>
+                     <ObjectStatus
+                        title="Cantidad de embarcaciones propias "
+                        text="{ListaMareas>/Utils/CantEmbProp}"
+                        state="Information" />
+                     <ObjectStatus
+                        title="Cantidad de embarcaciones de terceros "
+                        text="{ListaMareas>/Utils/CantEmbTerc}"
+                        state="Information" />
+                     <ObjectStatus
+                        title="Total pesca declarada Propio "
+                        text=" {ListaMareas>/Utils/PescaDclPropio} Tn"
+                        state="Information" />
+                     <ObjectStatus
+                        title="Total pesca declarada terceros "
+                        text="{ListaMareas>/Utils/PescaDclTercero} Tn"
+                        state="Information" />
+                  </statuses>
+               </ObjectHeader>
                <IconTabBar id="idIconTabBar" expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Solid" upperCase="false" visible="true" select="onSelectTab" selectedKey="{ListaMareas>/Utils/SelectedKey}">
                   <items>
                      <IconTabFilter id="itfPropios" icon="sap-icon://person-placeholder" iconColor="Default" text="Propios" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false" count="{ListaMareas>/Utils/CountPropios}">

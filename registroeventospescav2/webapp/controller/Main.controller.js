@@ -516,6 +516,8 @@ sap.ui.define([
                 }*/
                 var ttPescaDeca = totalPescaDeclarada.toString();
                 modelo.setProperty("/Utils/TotalPescDecl", ttPescaDeca);
+                this.cargarDatosResumenMarea();
+                modelo.refresh();
                 //this.getView().byId("idObjectHeader").setNumber(ttPescaDeca);
             },
 

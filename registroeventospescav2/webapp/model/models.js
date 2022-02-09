@@ -554,7 +554,11 @@ sap.ui.define([
                     readOnlyActualizar: false,
                     readOnlyPescDecl: false,
                     visibleRowsPropios: 0,
-                    visibleRowsTerceros: 0
+                    visibleRowsTerceros: 0,
+                    CantEmbProp : 0,
+                    CantEmbTerc : 0,
+                    PescaDclPropio : 0,
+                    PescaDclTercero :0
                 }
             };
             var oModel = new JSONModel(data);
