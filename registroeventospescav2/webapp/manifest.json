@@ -118,6 +118,7 @@
                     "name": "DetalleMarea",
                     "view": "DetalleMarea",
                     "pattern": "DetalleMarea",
+                    "viewId" :"marea",
                     "targetAggregation": "pages",
                     "controlId": "app"
                 },

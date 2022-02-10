@@ -820,7 +820,7 @@ sap.ui.define([
 
             });
 
-            if (listaHoroAveCorreo > 0) {
+            if (listaHoroAveCorreo.length > 0) {
                 //llama al servicio de envio de correo
                 let serv_correoHoroAve = TasaBackendService.envioCorreoHoroAve(Cabecera.NMEMB, listaHoroAveCorreo);
                 let that = this;
