@@ -1450,6 +1450,20 @@ sap.ui.define([
                     };
                     messageItems.push(objMessage);
                 }
+                let tablaMensajes = anular.t_mensaje ? anular.t_mensaje : [];
+                if(tablaMensajes.length > 0){
+                    if(tablaMensajes[0].CMIN == "S"){
+                        let mssg = tablaMensajes[0].DSMIN;
+                        MessageBox.success(mssg, {
+                            title: "Exito",
+                            onClose: async function () {
+                                BusyIndicator.hide();
+                                await me.obtenerVentas(true);
+                            }
+                        });
+                    }
+                }
+                
                 /*
                 var oButton = this.getView().byId("messagePopoverBtn");
                 oMessagePopover.getBinding("items").attachChange(function (oEvent) {
@@ -1467,8 +1481,8 @@ sap.ui.define([
                     oButton.setText(this.highestSeverityMessages("DM"));
                 }.bind(this), 100);*/
 
-                BusyIndicator.hide();
-                await me.obtenerVentas(true);
+                // BusyIndicator.hide();
+                // await me.obtenerVentas(true);
             } else {
                 BusyIndicator.hide();
             }

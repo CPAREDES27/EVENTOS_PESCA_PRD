@@ -993,7 +993,7 @@ sap.ui.define([
             this._oView.getModel("popup_descarga").setProperty("/det_DesEmba", data.NMEMB);
             this._oView.getModel("popup_descarga").setProperty("/det_Especie", data.CDSPC);
             this._oView.getModel("popup_descarga").setProperty("/det_DesEspecie",data.DSSPC);
-            this._oView.getModel("popup_descarga").setProperty("/det_Lado", data.CDLDS);
+            this._oView.getModel("popup_descarga").setProperty("/det_Lado", data.DESC_CDLDS);
             this._oView.getModel("popup_descarga").setProperty("/det_CantPesca", data.CNPDS);
             this._oView.getModel("popup_descarga").setProperty("/det_FechaIni", data.FIDES + " " + data.HIDES);
             this._oView.getModel("popup_descarga").setProperty("/det_FechaFin", data.FFDES + " " + data.HFDES);

@@ -967,6 +967,13 @@ sap.ui.define([
 
                 for (let index2 = 0; index2 < rows_d.length; index2++) {
                     const element2 = rows_d[index2];
+                    element2.removeStyleClass("tabla");
+                    element2.removeStyleClass("tabla1");
+                    element2.removeStyleClass("tabla2");
+                }
+
+                for (let index2 = 0; index2 < rows_d.length; index2++) {
+                    const element2 = rows_d[index2];
                     if(element2.getAggregation("cells")[7].getProperty("text") === "Abierto"){
                         element2.addStyleClass("tabla");
                     }else if (element2.getAggregation("cells")[7].getProperty("text") === "Cerrado"){

@@ -215,7 +215,7 @@
 					<Column width="10rem" hAlign="End" filterProperty="Quantity">
 						<m:Label text="Lado descarga" />
 						<template>
-							<m:Text text="{eventos>CDLDS}"/>
+							<m:Text text="{eventos>DESC_CDLDS}"/>
 						</template>
 					</Column>
 					<Column width="15rem" hAlign="End" filterProperty="Quantity">

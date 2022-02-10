@@ -1355,7 +1355,7 @@ sap.ui.define([
 
         },
 
-        obtenerCantTotalPescaDeclDesc: function (nroEventoTope, me) {
+        obtenerCantTotalPescaDeclDesc:  function (nroEventoTope, me) {
             //let cantTotal = Number[0];
             var modelo = me.getOwnerComponent().getModel("DetalleMarea");
             let cantTotal = 0;
@@ -1377,6 +1377,7 @@ sap.ui.define([
                             }
                         }
                     }else{
+                        //listaEventos[j].ListaPescaDescargada = await this.obtenerFechaPescaDesc(listaEventos[j].NRDES);
                         var pescDesc = listaEventos[j].CNPCM;
                         if (pescDesc && !isNaN(pescDesc)) {
                             cantTotal += Number(pescDesc);
@@ -1408,6 +1409,57 @@ sap.ui.define([
             cabecera.CantTotalPescDecla = cantTotal;
             return cantTotal;
 
+        },
+        obtenerCantTotalPescaDeclDescMarea: async function (nroEventoTope, me) {
+            var modelo = me.getOwnerComponent().getModel("DetalleMarea");
+            let cantTotal = 0;
+            var listaEventos = this._listaEventos ? this._listaEventos : modelo.getProperty("/Eventos/Lista");
+            var cabecera = modelo.getProperty("/Form");
+            for (var j = 0; j < listaEventos.length; j++) {
+                if (listaEventos[j].CDTEV == "6") {
+                    if(listaEventos[j].ListaPescaDescargada != undefined){
+                        if(listaEventos[j].ListaPescaDescargada.length > 0){
+                            if (!me) {
+                                this.getView().byId("FechaEnvaseIni").setVisible(false);
+                                this.getView().byId("FechaEnvaseFin").setVisible(false);
+                            }
+                            var pescDesc = listaEventos[j].ListaPescaDescargada[0].CantPescaDeclarada;
+                            if (pescDesc && !isNaN(pescDesc)) {
+                                cantTotal += Number(pescDesc);
+                            } else {
+                                cantTotal += 0;
+                            }
+                        }
+                    }else{
+                        listaEventos[j].ListaPescaDescargada = await this.obtenerFechaPescaDesc(listaEventos[j].NRDES);
+                        var pescDesc = listaEventos[j].CNPCM;
+                        if (pescDesc && !isNaN(pescDesc)) {
+                            cantTotal += Number(pescDesc);
+                        } else {
+                            cantTotal += 0;
+                        }
+                    }
+                }
+
+                if (listaEventos[j].NREVN == nroEventoTope) {
+                    break;
+                }
+            }
+            //this._FormMarea.CantTotalPescDecla = cantTotal;
+            cabecera.CantTotalPescDecla = cantTotal;
+            return cantTotal;
+
+        },
+        obtenerFechaPescaDesc :async function(nroDesc){
+            let pescaDescFech = TasaBackendService.obtenerListaPescaDescargada(nroDesc, this.getCurrentUser());
+            let that = this;
+            let pesDesc =[];
+            await Promise.resolve(pescaDescFech).then(values => {
+                pesDesc =  JSON.parse(values).data;
+            }).catch(reason => {
+
+            });
+            return pesDesc;
         },
         validarEsperaEventoAnterior: function () {
             let bOk = true;
@@ -2508,7 +2560,7 @@ sap.ui.define([
             if (tipoEvento == "5") {
                 this.getView().byId("FechaEnvaseIni").setVisible(true);
                 let totalPescaCala = await this.Dat_PescaDeclarada.obtenerCantTotalDeclMarea(0);
-                let totalPescaDeclDesc = this.obtenerCantTotalPescaDeclDesc(0,this);
+                let totalPescaDeclDesc =  this.obtenerCantTotalPescaDeclDesc(0,this);
                 
                 nodoEventos[this._eventoNuevo].CantTotalPescDecla = totalPescaCala;	//Cantidad total de pesca declarada por marea
                 
@@ -3133,7 +3185,7 @@ sap.ui.define([
             var estadoMarea = modelo.getProperty("/Form/ESMAR");
             var ultimoEvento = eventos[eventos.length - 1];
             var cantTotalDeclMarea = this.obtenerCantTotalPescaDecla(0, this);
-            var cantTotalDeclDescMarea = this.obtenerCantTotalPescaDeclDesc(0, this);
+            var cantTotalDeclDescMarea =  this.obtenerCantTotalPescaDeclDesc(0, this);
             var motivoMarea = modelo.getProperty("/Form/CDMMA");
             var motivoMarPesca = ["1", "2"];
             var motivoCalaSDes = ["4", "5", "6"];

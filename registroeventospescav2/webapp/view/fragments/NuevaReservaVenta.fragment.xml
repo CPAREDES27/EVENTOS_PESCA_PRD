@@ -136,7 +136,7 @@
 								</Table>
     </content>
    <beginButton>
-        <Button type="Emphasized" id="btnAceptarCrearMarea" text="{DetalleMarea>/Utils/TxtBtnSuministro}" press="onProcesarSum" enabled="true"></Button>
+        <Button type="Emphasized" id="btnAceptarCrearMarea2" text="{DetalleMarea>/Utils/TxtBtnSuministro}" press="onProcesarSum" enabled="true"></Button>
     </beginButton>
     <endButton>
         <Button type="Emphasized"  text="Cerrar" press="onCancelNuevaResVent" enabled="true"></Button>

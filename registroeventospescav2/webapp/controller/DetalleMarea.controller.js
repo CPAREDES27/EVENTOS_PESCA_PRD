@@ -1080,13 +1080,13 @@ sap.ui.define([
             this.verificarCierreMarea();
         },
 
-        verificarCierreMarea: function () {
+        verificarCierreMarea: async function () {
             var modelo = this.getOwnerComponent().getModel("DetalleMarea");
             var eventos = modelo.getProperty("/Eventos/Lista");
             var estadoMarea = modelo.getProperty("/Form/ESMAR");
             var ultimoEvento = eventos[eventos.length - 1];
-            var cantTotalDeclMarea = sap.ui.controller("com.tasa.registroeventospescav2.controller.DetalleEvento").obtenerCantTotalPescaDecla(0, this);
-            var cantTotalDeclDescMarea = sap.ui.controller("com.tasa.registroeventospescav2.controller.DetalleEvento").obtenerCantTotalPescaDeclDesc(0, this);
+            var cantTotalDeclMarea =  sap.ui.controller("com.tasa.registroeventospescav2.controller.DetalleEvento").obtenerCantTotalPescaDecla(0, this);
+            var cantTotalDeclDescMarea = await sap.ui.controller("com.tasa.registroeventospescav2.controller.DetalleEvento").obtenerCantTotalPescaDeclDescMarea(0, this);
             var motivoMarea = modelo.getProperty("/Form/CDMMA");
             var motivoMarPesca = ["1", "2"];
             var motivoCalaSDes = ["4", "5", "6"];
@@ -1169,7 +1169,8 @@ sap.ui.define([
                         if (evt == "Aceptar") {
                             BusyIndicator.hide();
                             await me.SaveReserva();
-                            me.getNuevaMareaDialog().close();
+                            me.getNuevaResVenDialog().close();
+                            //me.getNuevaMareaDialog().close();
                         }else{
                             BusyIndicator.hide();
                         }
