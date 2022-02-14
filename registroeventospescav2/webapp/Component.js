@@ -46,7 +46,7 @@ sap.ui.define([
 			this.setModel(models.createConstantsUtility(), "ConstantsUtility");
 
 			//set ayuda de buqueda embarcacion
-			this.setModel(models.busquedaEmba(), "busquedaEmba");
+			this.setModel(models.busquedaAyuBusq(), "busquedaAyuBusq");
 
 			//set form model
 			sap.ui.getCore().setModel(models.createFormModel(), "Form");

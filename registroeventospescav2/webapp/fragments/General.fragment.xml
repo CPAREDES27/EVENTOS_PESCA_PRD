@@ -85,17 +85,6 @@
 									</FlexBox>
 								</form:fields>
 							</form:FormElement>
-							<form:FormElement visible="true">
-								<form:label>
-									<Label text="Latitud" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-								</form:label>
-								<form:fields>
-									<Input id="ip_latitud1" type="Number" value="{eventos>/LatitudD}" textAlign="Right" enabled="true" visible="true" width="90%"  change="validarLong"/>
-									<Label text="º" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-									<Input id="ip_latitud2" type="Number" value="{eventos>/LatitudM}" textAlign="Right"  enabled="true" visible="true" width="90%"  change="validarLat"/>
-									<Label text="'" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-								</form:fields>
-							</form:FormElement>
 						</form:formElements>
 					</form:FormContainer>
 					<form:FormContainer visible="true">
@@ -124,15 +113,34 @@
 									</FlexBox>
 								</form:fields>
 							</form:FormElement>
+						</form:formElements>
+					</form:FormContainer>
+					<form:FormContainer visible="true" id="cord1">
+						<form:formElements>
 							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Latitud" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+								</form:label>
+								<form:fields>
+									<Input id="ip_latitud1" type="Number" value="{eventos>/LatitudD}" textAlign="Right" enabled="true" visible="true" width="90%"  change="validarLong"/>
+									<Label id="lbllati1" text="º" design="Standard" width="1rem" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+									<Input id="ip_latitud2" type="Number" value="{eventos>/LatitudM}" textAlign="Right"  enabled="true" visible="true" width="90%"  change="validarLat"/>
+									<Label id="lbllati2" text="'" design="Standard" width="1rem" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+					</form:FormContainer>
+					<form:FormContainer visible="true" id="cord2">
+						<form:formElements>
+							<form:FormElement visible="true" id="div_longitud">
 								<form:label>
 									<Label text="Longitud" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
 								</form:label>
 								<form:fields>
 									<Input id="ip_longitud1" value="{eventos>/LongitudD}" textAlign="Right"  enabled="true" visible="true" width="90%"  change="validarLong"/>
-									<Label text="º" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+									<Label id="lbllong1" text="º" design="Standard" width="1rem" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
 									<Input id="ip_longitud2" value="{eventos>/LongitudM}"  textAlign="Right"  enabled="true" visible="true" width="90%"  change="validarLat"/>
-									<Label text="'" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+									<Label id="lbllong2" text="'" design="Standard" width="1rem" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
 								</form:fields>
 							</form:FormElement>
 						</form:formElements>
@@ -142,9 +150,9 @@
 					<form:ResponsiveGridLayout 
 					singleContainerFullSize="false" 
 					adjustLabelSpan="true" 
-					columnsL="3" 
-					labelSpanL="3" 
-					columnsM="3" />
+					columnsL="2" 
+					labelSpanL="2" 
+					columnsM="2" />
 				</form:layout>
 			</form:Form>
 

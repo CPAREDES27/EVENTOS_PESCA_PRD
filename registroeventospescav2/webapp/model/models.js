@@ -344,13 +344,15 @@ sap.ui.define([
                     ValMaxFlujPanga: 250
                 },
                 HelpHost: "",
-                input: null,
+                //input: null,
                 idDialogComp: null,
                 helpArma: null,
                 user: {
                     name: ""
                 },
-                EmbaItem: null
+                EmbaItem: null,
+                searchEmbar : {},
+                searchArma :{}
 			};
 			var oModel = new JSONModel(initModel);
 			//oModel.setDefaultBindingMode("OneWay");
@@ -564,7 +566,7 @@ sap.ui.define([
             var oModel = new JSONModel(data);
 			return oModel;
         },
-        busquedaEmba: function(){
+        busquedaAyuBusq: function(){
             var data = {
                 HelpHost: "",
                 input: null,

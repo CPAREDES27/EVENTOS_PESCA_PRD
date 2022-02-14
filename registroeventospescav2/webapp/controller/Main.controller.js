@@ -549,6 +549,7 @@ sap.ui.define([
                 var usuario = await this.getCurrentUser();
                 modeloConst.setProperty("/user/name", usuario);
                 modeloConst.setProperty("/Utils/BuscarEmba", true);
+                modeloConst.setProperty("/Utils/searchEmbar", {});
 
                 //let sIdInput = oEvent.getSource().getId(),
                 let host = modeloConst.getProperty("/HelpHost"),
@@ -559,7 +560,7 @@ sap.ui.define([
                     idComponent = "busqembarcaciones",
                     oInput = sap.ui.getCore().byId("txtEmba_R");
                 
-                modeloConst.setProperty("/input", oInput);
+                    modeloConst.setProperty("/input", null);//modeloConst.setProperty("/input", oInput);
 
                 if (!this.DialogComponentEmba) {
                     this.DialogComponentEmba = sap.ui.xmlfragment("com.tasa.registroeventospescav2.view.fragments.Embarcacion", this);

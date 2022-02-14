@@ -145,6 +145,17 @@ a.sapUshellShellHeadItmCntnt{
   #evento--idEquipamiento.sapMITBSelected div>div>span, #evento--idPescaDesc.sapMITBSelected div>div>span{
   color: rgb(255, 255, 255);
 }
+
+#evento--cord1--Grid-wrapperfor-evento--ip_latitud1, #evento--cord2--Grid-wrapperfor-evento--ip_longitud1{
+  width: 10rem;
+}
+
+#evento--cord1--Grid-wrapperfor-evento--lbllati1, #evento--cord2--Grid-wrapperfor-evento--lbllong1{
+  width: 1rem;
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* #evento--Tab_eventos--header{
   background: #154378 !important;
 } */

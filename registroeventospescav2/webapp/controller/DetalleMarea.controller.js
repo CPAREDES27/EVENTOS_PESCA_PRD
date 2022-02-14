@@ -141,8 +141,10 @@ sap.ui.define([
                 var initData = oStore.get('InitData');
                 modelo.setData(initData);
                 modelo.refresh();
-                history.go(-1);
+                //history.go(-1);
                 this.actualizarMareas(false);
+                this.router.navTo("Main");
+                
             }else{
                 let that = this;
                 var mssg = this.oBundle.getText("CONFIRMSAVEMSSG");
@@ -154,8 +156,10 @@ sap.ui.define([
                             var initData = oStore.get('InitData');
                             modelo.setData(initData);
                             modelo.refresh();
-                            history.go(-1);
+                            //history.go(-1);
                             that.actualizarMareas(false);
+                            that.router.navTo("Main");
+                            
                         }
                     }
                 })
@@ -1553,6 +1557,7 @@ sap.ui.define([
             var modeloConst = this.getOwnerComponent().getModel("DetalleMarea");
             var usuario = await this.getCurrentUser();
             modeloConst.setProperty("/user/name", usuario);
+            modeloConst.setProperty("/Utils/searchArma", {});
 
             //let sIdInput = oEvent.getSource().getId(),
             let host = modeloConst.getProperty("/HelpHost"),
@@ -1562,7 +1567,7 @@ sap.ui.define([
                 nameComponent = "busqarmadores",
                 idComponent = "busqarmadores",
                 oInput = this.getView().byId("idArmadorComercial_R");
-            modeloConst.setProperty("/input", oInput);
+            modeloConst.setProperty("/input", null);//modeloConst.setProperty("/input", oInput);
 
             if (!this.DialogComponent) {
                 this.DialogComponent = sap.ui.xmlfragment("com.tasa.registroeventospescav2.view.fragments.NuevoArmador", this);
