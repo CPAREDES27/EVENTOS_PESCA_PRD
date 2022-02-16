@@ -2227,6 +2227,7 @@ sap.ui.define([
                     }
                 }
                 modelo.setProperty("/DistribFlota/Indicador", caracterEditar);
+                modelo.setProperty("/DistribFlota/CDEMP", response.EMPLA ? response.EMPLA : "");
                 modelo.setProperty("/DistribFlota/IntLatPuerto", parseInt(response.LTGEO));
                 modelo.setProperty("/DistribFlota/IntLonPuerto", parseInt(response.LNGEO));
                 if (!response.DSEMP || !response.INPRP) {
@@ -3401,28 +3402,38 @@ sap.ui.define([
             let cantPropios = Number(0);
             let cantTerceros = Number(0);
             let cantPdclTotal = Number(0);
+            let cantEmbaPescaProp = Number(0);
+            let cantEmbaPescaTerceros = Number(0);
 
             if (dataPropios.length > 0) {
                 for (let index = 0; index < dataPropios.length; index++) {
                     const element = dataPropios[index];
-                    cantPropios += Number(element.CNPCM) ? Number(element.CNPCM) : 0;
+                    let cantidad = Number(element.CNPCM) ? Number(element.CNPCM) : 0;
+                    cantPropios += cantidad;
+                    if(cantidad > 0){
+                        cantEmbaPescaProp++;
+                    }
                 }
             }
             if (dataTerceros.length > 0) {
                 for (let index = 0; index < dataTerceros.length; index++) {
                     const element = dataTerceros[index];
-                    cantTerceros += Number(element.CNPCM) ? Number(element.CNPCM) : 0;
+                    let cantidad = Number(element.CNPCM) ? Number(element.CNPCM) : 0;
+                    cantTerceros += cantidad;
+                    if(cantidad > 0){
+                        cantEmbaPescaTerceros++;
+                    }
                 }
             }
             cantPdclTotal = cantPropios + cantTerceros;
-
-
 
             modeloMareas.setProperty("/Utils/TotalPescDecl", cantPdclTotal);
             modeloMareas.setProperty("/Utils/CantEmbProp", dataPropios.length);
             modeloMareas.setProperty("/Utils/CantEmbTerc", dataTerceros.length);
             modeloMareas.setProperty("/Utils/PescaDclPropio", cantPropios);
             modeloMareas.setProperty("/Utils/PescaDclTercero", cantTerceros);
+            modeloMareas.setProperty("/Utils/PescaEmbaPropios", cantEmbaPescaProp);
+            modeloMareas.setProperty("/Utils/PescaEmbaTerceros", cantEmbaPescaTerceros);
         }
 
 

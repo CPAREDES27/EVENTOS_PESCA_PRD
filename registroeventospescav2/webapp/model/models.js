@@ -560,7 +560,9 @@ sap.ui.define([
                     CantEmbProp : 0,
                     CantEmbTerc : 0,
                     PescaDclPropio : 0,
-                    PescaDclTercero :0
+                    PescaDclTercero :0,
+                    PescaEmbaPropios :0,
+                    PescaEmbaTerceros :0
                 }
             };
             var oModel = new JSONModel(data);

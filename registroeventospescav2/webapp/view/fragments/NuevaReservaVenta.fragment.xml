@@ -120,12 +120,12 @@
 														visible="true"/>
 												<Input value="{DetalleMarea>CNSUM}" description="{DetalleMarea>DSUMD}" showValueHelp="false" width="auto" valueStateText="Invalid entry"/>
 												<Text text="{DetalleMarea>WERKS}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-												<ComboBox width="auto" items="{DetalleMarea>/ConfigReservas/Almacenes}" selectedKey="{DetalleMarea>/Suministro/0/CDALE}" change="onSelectAlmacen" visible="{DetalleMarea>/Config/visibleAlmacenReserva}">
+												<ComboBox width="auto" items="{path:'DetalleMarea>/ConfigReservas/Almacenes', templateShareable:false}" selectedKey="{DetalleMarea>/Suministro/0/CDALE}" change="onSelectAlmacen" visible="{DetalleMarea>/Config/visibleAlmacenReserva}">
                                         			<items>
                                             			<core:Item text="{DetalleMarea>DSALM}" enabled="true" key="{DetalleMarea>CDALE}"/>
                                         			</items>
                                     			</ComboBox>
-												<ComboBox width="auto" items="{DetalleMarea>/ConfigReservas/AlmacenesExt}" selectedKey="{DetalleMarea>CDALE}" change="onSelectAlmacen" visible="{DetalleMarea>/Config/visibleAlmacenExterno}">
+												<ComboBox width="auto" items="{path:'DetalleMarea>/ConfigReservas/AlmacenesExt', templateShareable:false}" selectedKey="{DetalleMarea>CDALE}" change="onSelectAlmacen" visible="{DetalleMarea>/Config/visibleAlmacenExterno}">
                                         			<items>
                                             			<core:Item text="{DetalleMarea>DESCR}" enabled="true" key="{DetalleMarea>VAL01}"/>
                                         			</items>

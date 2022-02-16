@@ -883,6 +883,7 @@ sap.ui.define([
                     this.getView().byId("FechaEnvaseIni").setVisible(false);
                     this.getView().byId("FechaEnvaseFin").setVisible(false);
                     this.getView().byId("fe_FechaProduccion").setVisible(true);
+                    this.getView().byId("fe_prod_arribo").setVisible(true);
                     if (this._listaEventos[this._elementAct].INPRP == textValidaciones.INDIC_PROPIEDAD_PROPIOS) {
                         this.getView().byId("dtf_FechaProduccion").setEnabled(false);
                         //Sea (CHI o CHD)
@@ -902,6 +903,8 @@ sap.ui.define([
                 if (this._tipoEvento == textValidaciones.TIPOEVENTOSALIDAZONA) {
                     this.getView().byId("FechaEnvaseIni").setVisible(true);
                     this.getView().byId("fe_fechaArribo").setVisible(true);
+                    this.getView().byId("mock_con1").setVisible(true);
+                    this.getView().byId("fe_prod_arribo").setVisible(true);
                 }
             }
 
@@ -2352,6 +2355,8 @@ sap.ui.define([
             this.getView().byId("fe_fechaFinCala").setVisible(false);
             this.getView().byId("fe_FechaProduccion").setVisible(false);
             this.getView().byId("fe_fechaArribo").setVisible(false);
+            this.getView().byId("fe_prod_arribo").setVisible(false);
+            this.getView().byId("mock_con1").setVisible(false);
             this.getView().byId("fe_MotiNoPesca").setVisible(false);
             this.getView().byId("0004").setVisible(false);
             this.getView().byId("0003").setVisible(false);

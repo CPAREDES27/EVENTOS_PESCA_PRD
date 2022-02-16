@@ -33,11 +33,11 @@
                         state="Information" />
                      <ObjectStatus
                         title="Total pesca declarada Propio "
-                        text=" {ListaMareas>/Utils/PescaDclPropio} Tn"
+                        text=" {ListaMareas>/Utils/PescaDclPropio} Tn de {ListaMareas>/Utils/PescaEmbaPropios} embarcaciones"
                         state="Information" />
                      <ObjectStatus
                         title="Total pesca declarada terceros "
-                        text="{ListaMareas>/Utils/PescaDclTercero} Tn"
+                        text="{ListaMareas>/Utils/PescaDclTercero} Tn de {ListaMareas>/Utils/PescaEmbaTerceros} embarcaciones"
                         state="Information" />
                   </statuses>
                </ObjectHeader>

@@ -154,6 +154,10 @@ a.sapUshellShellHeadItmCntnt{
   width: 1rem;
 }
 
+#evento--cont_fechasCala1--Grid.sapUiFormResGridCont,  #evento--cont_fechasCala2--Grid.sapUiFormResGridCont, #evento--cont_fechasEnv1--Grid.sapUiFormResGridCont, #evento--cont_fechasEnv2--Grid.sapUiFormResGridCont
+, #evento--cont_info_lati--Grid.sapUiFormResGridCont, #evento--cont_info_long--Grid.sapUiFormResGridCont, #evento--fe_prod_arribo--Grid.sapUiFormResGridCont{
+  padding-bottom: 0rem;
+}
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* #evento--Tab_eventos--header{

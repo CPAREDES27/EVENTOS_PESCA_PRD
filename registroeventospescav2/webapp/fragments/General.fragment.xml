@@ -60,7 +60,7 @@
 			<form:Form id="f_LatitudLongitud" width="100%" editable="true" visible="true">
 				<form:formContainers>
 
-					<form:FormContainer visible="true">
+					<form:FormContainer visible="true" id= "cont_info_lati">
 						<form:formElements>
 							<form:FormElement visible="true">
 								<form:label>
@@ -87,7 +87,7 @@
 							</form:FormElement>
 						</form:formElements>
 					</form:FormContainer>
-					<form:FormContainer visible="true">
+					<form:FormContainer visible="true" id= "cont_info_long">
 						<form:formElements>
 							<form:FormElement visible="true">
 								<form:label>
