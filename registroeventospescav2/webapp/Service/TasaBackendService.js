@@ -1068,6 +1068,21 @@ sap.ui.define([
                 return null;
             });
             return data;
+        },
+
+        obtenerRolesUsuarios: async function(correo){
+            var uri = UtilService.getHostService() + "/api/General/ConsultaRol/";
+            var sBody = UtilService.getBodyConsRol();
+            sBody.aplicacion = "EVENTOPESCA";
+            sBody.usuario = correo;
+            var data = await this.http(uri).post(null, sBody).then(function (response) {
+                var data = JSON.parse(response);
+                return data;
+            }).catch(function(error){
+                console.log("ERROR: TasaBackendService.obtenerRolesUsuarios: ", error);
+                return null;
+            });
+            return data;
         }
 
     });

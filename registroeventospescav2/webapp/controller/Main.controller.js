@@ -19,6 +19,7 @@ sap.ui.define([
         var oMessagePopover;
 
         const mainUrlServices = 'https://cf-nodejs-qas.cfapps.us10.hana.ondemand.com/api/';
+        //const mainUrlServices = 'https://cf-nodejs-prd.cfapps.us10.hana.ondemand.com/api/';
 
         return MainComp.extend("com.tasa.registroeventospescav2.controller.Main", {
 
@@ -50,7 +51,7 @@ sap.ui.define([
                         }
                     }
                 }
-
+                await this.validarRoles();
                 await this.loadInitData();
                 await this.cargarDatosReutilizables();
 
@@ -237,9 +238,10 @@ sap.ui.define([
                     var departamentos = resDepartamentos.data;
                     modelo.setProperty("/Config/datosCombo/Departamentos", departamentos);
                 }
+                
                 modelo.refresh();
 
-                this.validarRoles();
+                
             },
 
             onSearchMarea: function (evt) {
@@ -477,8 +479,17 @@ sap.ui.define([
                 return "FGARCIA";
             },*/
 
-            getRolUser: function () {
-                return [];//este metodo debe devolver la lista de roles asignado. Ejem. ["Administrador", "Operador"]
+            getRolUser: async function () {
+                let obterRoles = TasaBackendService.obtenerRolesUsuarios("roviedo@tasa.com.pe");//this.getCurrentCorreo()
+                let that = this;
+                let lstRoles =[];
+                await Promise.resolve(obterRoles).then(values => {
+                    lstRoles =  values;
+                }).catch(reason => {
+                    console.log(reason);
+                });
+                return lstRoles;
+                //return [];//este metodo debe devolver la lista de roles asignado. Ejem. ["Administrador", "Operador"]
             },
 
             getDialog: function () {
@@ -861,20 +872,22 @@ sap.ui.define([
                 sap.ui.getCore().byId("comboPaginacion").setSelectedKey("1");*/
             },
 
-            validarRoles: function () {
+            validarRoles: async function () {
                 var modelo = this.getOwnerComponent().getModel("DetalleMarea");
                 var rolesRadOpe = modelo.getProperty("/RolesFlota/RolRadOpe");
                 var rolIngCOmb = modelo.getProperty("/RolesFlota/RolIngCom");
-                var rolesUsuario = this.getRolUser();
+                var rolesUsuario = await this.getRolUser();
                 for (let index = 0; index < rolesUsuario.length; index++) {
                     const rol = rolesUsuario[index];
-                    if (rolesRadOpe.includes(rol)) {
-                        modelo.setProperty("/DataSession/IsRolRadOpe", true);
-                    }
+                    modelo.setProperty("/DataSession/IsRolRadOpe", rol.ROLRADOPE ? rol.ROLRADOPE : false);
+                    modelo.setProperty("/DataSession/IsRollngComb", rol.ROLINGCOMB ? rol.ROLINGCOMB : false);
+                    // if (rolesRadOpe.includes(rol)) {
+                    //     modelo.setProperty("/DataSession/IsRolRadOpe", true);
+                    // }
 
-                    if (rolIngCOmb.includes(rol)) {
-                        modelo.setProperty("/DataSession/IsRollngComb", true);
-                    }
+                    // if (rolIngCOmb.includes(rol)) {
+                    //     modelo.setProperty("/DataSession/IsRollngComb", true);
+                    // }
                 }
                 BusyIndicator.hide();
                 //modelo.setProperty("/DataSession/RolFlota", true);
@@ -952,13 +965,16 @@ sap.ui.define([
             },
 
             onTest: function () {
-                console.log("Hiciste click");
-                window.open('https://tasaqas.launchpad.cfapps.us10.hana.ondemand.com/site/tasapqas#pescaDeclarada-display?sap-ui-app-id-hint=saas_approuter_com.tasa.pdeclarada', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-                // TasaBackendService.test().then(function (response) {
-                //     console.log("Response: ", response);
-                // }).catch(function (error) {
-                //     console.log("ERROR: DetalleMarea.onTest - ", error);
-                // });
+                let urlIntance = window.location.origin;
+                let servicioNode = 'qas';
+                if (urlIntance.indexOf('tasaqas') !== -1) {
+                    servicioNode = 'qas';
+                } else if (urlIntance.indexOf('tasaprd') !== -1) {
+                    servicioNode = 'prd';
+                }
+                let url = "https://tasa" + servicioNode + ".launchpad.cfapps.us10.hana.ondemand.com/site/tasap" + servicioNode + "#pescaDeclarada-display?sap-ui-app-id-hint=saas_approuter_com.tasa.pdeclarada";
+                window.open(url, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+                
             },
             cargarFilas : function(event) {
                 console.log(event);

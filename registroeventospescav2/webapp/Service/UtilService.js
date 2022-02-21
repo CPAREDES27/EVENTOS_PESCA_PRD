@@ -292,6 +292,13 @@ sap.ui.define([
             };
             return sBody;
         },
+        getBodyConsRol : function(){
+            var sBody = {
+                aplicacion : "",
+                usuario : ""
+            };
+            return sBody;
+        }
 
     }
 

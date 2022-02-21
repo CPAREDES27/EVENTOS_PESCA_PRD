@@ -67,6 +67,12 @@ sap.ui.define([
             return "FGARCIA";
         },
 
+        getCurrentCorreo :async function(){
+            const oUserInfo = await this.getUserInfoService();
+            const sUserEmail = oUserInfo.getEmail(); //fgarcia@tasa.com.pe
+            return sUserEmail;
+        },
+
         getUserInfoService: function () {
             return new Promise(resolve => sap.ui.require([
                 "sap/ushell/library"

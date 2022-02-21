@@ -971,16 +971,68 @@ sap.ui.define([
             this._oView.getModel("eventos").setProperty("/DESSTCMB", n_valorstock);
         },
 
-        validarFechaEnvIni :function(){
-            this.ctr.validarFechaEnvIni_Det();
+        validarFechaEnvIni :function(oEvent){
+            let bValid =  oEvent.getParameter("valid");
+            let oValue = oEvent.getParameter("value");
+            let oId = oEvent.getParameter("id");
+            let oDP = oEvent.getSource();
+            if (bValid) {
+                oDP.setValueState(sap.ui.core.ValueState.None); 
+                this.ctr.validarFechaEnvIni_Det();
+            }else{
+                let  valor_fech = "";
+                valor_fech = this.fechasValidaion(oValue, oDP);
+                sap.ui.getCore().byId(oId).setValue(valor_fech);
+            }
         },
 
-        validarFechaEnvFin : function(){
-            this.ctr.validarFechaEnvFin_Det();
+        validarFechaEnvFin : function(oEvent){
+            let bValid =  oEvent.getParameter("valid");
+            let oValue = oEvent.getParameter("value");
+            let oId = oEvent.getParameter("id");
+            let oDP = oEvent.getSource();
+            if (bValid) {
+                oDP.setValueState(sap.ui.core.ValueState.None); 
+                this.ctr.validarFechaEnvFin_Det();
+            }else{
+                let  valor_fech = "";
+                valor_fech = this.fechasValidaion(oValue, oDP);
+                sap.ui.getCore().byId(oId).setValue(valor_fech);
+            }
         },
-        validarFechaCalas_Evn :function(){
-            this.ctr.validarFechaCalas();
-        }
+        validarFechaCalas_Evn :function(oEvent){
+            let bValid =  oEvent.getParameter("valid");
+            let oValue = oEvent.getParameter("value");
+            let oId = oEvent.getParameter("id");
+            let oDP = oEvent.getSource();
+            if (bValid) {
+                oDP.setValueState(sap.ui.core.ValueState.None); 
+                this.ctr.validarFechaCalas();
+            }else{
+                let  valor_fech = "";
+                valor_fech = this.fechasValidaion(oValue, oDP);
+                sap.ui.getCore().byId(oId).setValue(valor_fech);
+            }
+        },
+        fechasValidaion: function (fecha, oDP) {
+            let fecha_v = "";
+            if(fecha != "" && fecha != null){
+                let v_fech = fecha.split("/");
+                let lgn_dia =  v_fech[0] ? v_fech[0].length : 0 
+                let lgn_mes =  v_fech[1] ? v_fech[1].length : 0 
+                let lgn_anio =  v_fech[2] ? v_fech[2].length : 0 
+                if(lgn_anio > 4){
+                    fecha_v = fecha.substring(0, 10);
+                    oDP.setValueState(sap.ui.core.ValueState.None); 
+                }else{
+                    fecha_v = fecha;
+                    oDP.setValueState(sap.ui.core.ValueState.Error);
+                    MessageBox.error("El formato de la fecha debe ser dd/MM/yyyy");
+                }
+            }
+            return fecha_v;
+            
+		}
 
 
     });
