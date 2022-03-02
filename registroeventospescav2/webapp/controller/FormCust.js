@@ -69,7 +69,6 @@ sap.ui.define([
                 var ce_embaElement = emba[0];
                 indPropiedad = ce_embaElement.INPRP;
                 if (estMarAnt == "C") {
-                    console.log("Mare Anterior Cerrada");
                     if (ce_embaElement.ESEMB == "O") {
                         form.setProperty("/Embarcacion", ce_embaElement.CDEMB);
                         form.setProperty("/DescEmbarcacion", ce_embaElement.NMEMB);
@@ -119,11 +118,9 @@ sap.ui.define([
                         clearData = true;
                     }
                 } else if (estMarAnt == "A") {
-                    console.log("Mare Anterior Abierta");
                     if (!cieMarAnt) {
                         visibleModel.setProperty("/EnlMarAnterior", true);
                         var mssg = codigo + " - " + ce_embaElement.NMEMB + ":" + this.getResourceModel().getText("EMBMAREAABIERTA");
-                        console.log(mssg);
                         MessageBox.error(mssg);
                         clearData = true;
                     } else {
@@ -287,7 +284,6 @@ sap.ui.define([
                 }
                 return bOk;
             }).catch(function (error) {
-                console.log("ERROR: FormCust.consultarPermisoZarpe - ", error);
                 return null;
             });
             return puedeZarpar;
@@ -327,7 +323,6 @@ sap.ui.define([
                     return false;
                 }
             }).catch(function (error) {
-                console.log("ERROR: FormCust.obtenerDatosDistribFlota - ", error);
                 return null;
             });
             return bOk;

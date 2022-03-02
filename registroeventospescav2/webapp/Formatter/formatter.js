@@ -15,7 +15,6 @@ sap.ui.define([
                     }
                 }
             }).catch(function(error){
-                console.log("ERROR: Formatter.eventoTexto - ", error );
             });*/
         },
 
@@ -30,7 +29,6 @@ sap.ui.define([
                     }
                 }
             }).catch(function(error){
-                console.log("ERROR: Formatter.eventoTexto - ", error );
             });*/
         }
 

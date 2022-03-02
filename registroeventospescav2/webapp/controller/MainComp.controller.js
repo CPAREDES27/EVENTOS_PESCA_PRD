@@ -131,7 +131,6 @@ sap.ui.define([
                                 let fechContab = element.ListaPescaDescargada[0].FECCONMOV;
                                 var fechaContabilizacion = Utils.strDateToDate(fechContab);//pasar fecha de contabilizacion de modelo pesca descargada
                                 var diffDays = Utils.daysBetween(fechaContabilizacion, fechaActual);
-                                console.log("FECHA CONT: ", fechContab);
                                 if (diffDays >= 0) {
                                     modelo.setProperty("/Form/ESCMA", "P");
                                 }
@@ -340,7 +339,6 @@ sap.ui.define([
                 this.getConfirmSaveDialog().close();
                 history.go(-2);//navegar a comp. reut. Lista Mareas
             }*/
-            //console.log(evt.getSource().getParent().getParent().getProperty("viewName"));
             /*this.getConfirmSaveDialog().close();
             history.go(-1);*/
         },
@@ -376,7 +374,6 @@ sap.ui.define([
                 this.getConfirmSaveDialog().close();
                 history.go(-1);
             }*/
-            //console.log(evt.getSource().getParent().getParent().getProperty("viewName"));
             //this.getConfirmSaveDialog().close();
         },
 
@@ -440,7 +437,6 @@ sap.ui.define([
             }
 
             //dataDetalleMarea.Eventos.Lista = eventos;
-            console.log("LISTA EVENTOS: ", eventos);
             modeloDetalleMarea.setProperty("/Eventos/Lista", eventos);
             modeloDetalleMarea.setProperty("/Eventos/BiometriaRest", biometriaRes);   // AJUSTE DE BIOMETRIA ----EACOSTA
             //dataDetalleMarea.Incidental = incidental;
@@ -469,7 +465,6 @@ sap.ui.define([
 
             if (motivoSinZarpe.includes(motivo)) {
                 modeloDetalleMarea.setProperty("/Config/readOnlyFechIni", false);
-                console.log("BORRA FECHA ETA AQUI 2");
                 modeloDetalleMarea.setProperty("/Config/visibleFecHoEta", false);
                 modeloDetalleMarea.setProperty("/Config/visibleFechIni", true);
                 modeloDetalleMarea.setProperty("/Config/visibleFechFin", true);
@@ -753,8 +748,6 @@ sap.ui.define([
                 marea.str_disfl = this.obtenerALDistribFlota();
             }
 
-            console.log("GUARDAR MAREA: ", marea);
-
             try {
                 var guardar = await TasaBackendService.crearActualizarMarea(marea);
                 if (guardar.length > 0) {
@@ -831,7 +824,6 @@ sap.ui.define([
                 let serv_correoHoroAve = TasaBackendService.envioCorreoHoroAve(Cabecera.NMEMB, listaHoroAveCorreo);
                 let that = this;
                 await Promise.resolve(serv_correoHoroAve).then(values => {
-                    console.log(values);
                 }).catch(reason => {
 
                 });
@@ -2003,7 +1995,6 @@ sap.ui.define([
             if (embarcacion) {
                 await this.obtenerDatosMareaAnt(0, codigo);
                 //var mareaAnterior = modelo.getProperty("/MareaAnterior");
-                //console.log("Marea Anterior: ", mareaAnterior);
                 //var estMarAnt = mareaAnterior.getProperty("/EstMarea");
                 var estMarAnt = modelo.getProperty("/MareaAnterior/ESMAR");
                 //var cieMarAnt = mareaAnterior.getProperty("/EstCierre");
@@ -2075,7 +2066,6 @@ sap.ui.define([
                         MessageBox.error(mssg, {
                             actions: ["Ver Marea", MessageBox.Action.CLOSE],
                             onClose: async function (sAction) {
-                                console.log("Action: ", sAction);
                                 if (sAction == "Ver Marea") {
                                     BusyIndicator.show(0);
                                     var oStore = jQuery.sap.storage(jQuery.sap.storage.Type.Session);
@@ -2117,7 +2107,6 @@ sap.ui.define([
                 modelo.setProperty("/Form/DSSPE", null);
                 //form.setProperty("/MotMarea", null);
 
-                console.log("SETEA NULL AQUI 2");
                 modelo.setProperty("/Form/CDMMA", null);
             } else {
                 this.validarIndPropiedad(indPropiedad);
@@ -2200,7 +2189,6 @@ sap.ui.define([
                 modelo.setProperty("/DistribFlota/IntLatPuerto", parseInt(response.LTGEO));
                 modelo.setProperty("/DistribFlota/IntLonPuerto", parseInt(response.LNGEO));
                 modelo.refresh();
-                console.log("DISTRIBUCION FLOTA PLANTA: ", modelo.getProperty("/DistribFlota"));
                 if (!response.DSEMP || !response.INPRP) {
                     var mssg = this.getResourceBundle().getText("PLANTASINEMPRESA");
                     MessageBox.error(mssg);
@@ -2241,7 +2229,6 @@ sap.ui.define([
                     MessageBox.warning(mssg);
                 }
                 modelo.refresh();
-                console.log("DISTRIBUCION FLOTA: ", modelo.getProperty("/DistribFlota"));
                 return true;
             } else {
                 return false;
@@ -2304,7 +2291,6 @@ sap.ui.define([
                 }
                 return bOk;
             }).catch(function (error) {
-                console.log("ERROR: Main.consultarPermisoZarpe - ", error);
                 return null;
             });
             return puedeZarpar;
@@ -2364,7 +2350,6 @@ sap.ui.define([
             /*
             var jsonModelPropios = new JSONModel(propios);
             var jsonModelTerceros = new JSONModel(terceros);*/
-            //console.log("Modelo Propios: ", jsonModelPropios);
             /*this.getView().setModel(jsonModelPropios, "Propios");
             this.getView().setModel(jsonModelTerceros, "Terceros");
             this.getView().getModel("Propios").refresh();
@@ -2384,9 +2369,6 @@ sap.ui.define([
             //filtrar propios
             for (let index = 0; index < dataModeloPropios.length; index++) {
                 const element = dataModeloPropios[index];
-                /*if (element.NMEMB == "TASA 55") {
-                    console.log("TASA 55 Filter: ", element);
-                }*/
 
                 if (element.CDTEM == cdtem && element.CDPTA == cdpta) {
                     num++;
@@ -2434,7 +2416,6 @@ sap.ui.define([
                     dataPropios.push(tmpElement);
                 }
             }
-            console.log("DATA PROPIOS: ", dataPropios);
             modelo.setProperty("/PropiosFiltro", dataPropios);
             modelo.setProperty("/Utils/visibleRowsPropios", dataPropios.length);
             /*var modeloMareaPropios = new JSONModel(dataPropios);
@@ -2494,7 +2475,6 @@ sap.ui.define([
                     dataTerceros.push(tmpElement1);
                 }
             }
-            //console.log("DATA TERCEROS: ", dataTerceros);
             modelo.setProperty("/TercerosFiltro", dataTerceros);
             /*var modeloMareaTerceros = new JSONModel(dataTerceros);
             this.getView().byId("tblMareasTerceros").setModel(modeloMareaTerceros);*/
@@ -2527,7 +2507,6 @@ sap.ui.define([
             var cdtem = oStore.get("CDTEM");
             if (cdtem && cdpta) {
                 var listaMareas = await TasaBackendService.cargarListaMareas(currentUser);
-                //console.log("Lista Mareas: ", listaMareas);
                 if (listaMareas) {
                     this.validarDataMareas(listaMareas);
                     this.filtarMareas(cdtem, cdpta);
@@ -2629,8 +2608,6 @@ sap.ui.define([
 
             var oRouter = window.location.origin;
 
-            console.log(oRouter)
-
             var service = "";
 
             if (oRouter.indexOf("localhost") !== -1) {
@@ -2656,8 +2633,6 @@ sap.ui.define([
                 service = 'https://cf-nodejs-qas.cfapps.us10.hana.ondemand.com/api/'
 
             }
-
-            console.log(service);
 
             return service;
 

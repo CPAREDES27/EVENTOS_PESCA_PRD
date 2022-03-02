@@ -43,11 +43,9 @@ sap.ui.define([
             this.ctr = o_this;
             //this.previousTab = "General";
             this.nextTab = "";
-            console.log(textValidaciones.eventAttTabGeneral);
 
         },
         onButtonPress3: function (o_event) {
-            console.log(o_event);
         },
 
         getcontrol: function () {
@@ -150,7 +148,6 @@ sap.ui.define([
                 if (bOk && tipoEvento == "3") {
                     this.ctr.modeloVisible.VisibleDescarga = true;
                     bOk = await this.validarLatitudLongitud();
-                    console.log(bOk);
                 }
             } else {
                 var eventosValidar = textValidaciones.eventAttTabGeneral[Number(tipoEvento)];
@@ -342,7 +339,6 @@ sap.ui.define([
                 }
 
             }).catch(function (error) {
-                console.log("ERROR: General.validarMillasLitoral - ", error);
                 eventoActual.ValiCoordCala = false;
             });
             this._oView.getModel("eventos").updateBindings(true);
@@ -463,7 +459,6 @@ sap.ui.define([
 
                 let tabRedirect = this.buscarCodTab(textValidaciones.KeyTabs, this.nextTab)
                 let id_val = params.id;
-                console.log("id_log : " + id_val + " reirect : " + tabRedirect);
                 let o_iconTabBar = sap.ui.getCore().byId(id_val);
                 o_iconTabBar.setSelectedKey(tabRedirect);
                 BusyIndicator.hide();
@@ -471,7 +466,6 @@ sap.ui.define([
             }else{
                 let tabRedirect = event.getParameter("previousKey");
                 let id_val = event.getParameter("id");
-                console.log("id_log : " + id_val + " reirect : " + tabRedirect);
                 let o_iconTabBar = sap.ui.getCore().byId(id_val);
                 o_iconTabBar.setSelectedKey(tabRedirect);
             }
@@ -538,8 +532,7 @@ sap.ui.define([
                     fecha_v = Utils.strDateToSapDate(fecha);
                 }
                 await TasaBackendService.verificarTemporada(codTemp, fecha_v).then(function (response) {
-                    //ob
-                    console.log(response.data);
+                    
                     if (response.data != null && response.data.length > 0) {
                         bok = true;
                     } else {
@@ -548,7 +541,6 @@ sap.ui.define([
                         bok = false;
                     }
                 }).catch(function (error) {
-                    console.log("ERROR: General.verificarTemporada - ", error);
                 });
             }   
 
@@ -573,7 +565,6 @@ sap.ui.define([
                 //obtener repsonse
                 detalleMarea.EspPermitida = JSON.parse(response).data;
             }).catch(function (error) {
-                console.log("ERROR: General.consultarPermisoPesca - ", error);
             });
         },
 
@@ -613,7 +604,6 @@ sap.ui.define([
                 };
                 //setear variable global calendarioPescaCHD calendarioPescaCHI calendarioPescaVED
             }).catch(function (error) {
-                console.log("ERROR: General.obtenerTemporadas - ", error);
             });
 
             if (motivo == "1") {
@@ -903,7 +893,6 @@ sap.ui.define([
         },
         prueba : function(){
             let valor = sap.ui.getCore().byId("dtp_fechaIniCala").getValue();
-            console.log("Holaaaaaaaaaaaa : " + valor);
         },
         valStock_gen :function(){
             this.ctr.validacionStock();

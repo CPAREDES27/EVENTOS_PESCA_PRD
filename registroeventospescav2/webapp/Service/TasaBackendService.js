@@ -19,7 +19,6 @@ sap.ui.define([
                 var sData = JSON.parse(data);
                 return sData;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerTipoEmbarcacion: ", error);
                 return null;
             });
             return data;
@@ -35,7 +34,6 @@ sap.ui.define([
                 var sData = JSON.parse(data);
                 return sData;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerPlantas: ", error);
                 return null;
             });
             return data;
@@ -51,7 +49,6 @@ sap.ui.define([
                 var sData = JSON.parse(data);
                 return sData;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.cargarListaMareas: ", error);
                 return null;
             });
             return data;
@@ -66,7 +63,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerDetalleMarea: ", error);
                 return null;
             });
             return data
@@ -80,7 +76,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerDominio: ", error);
                 return null;
             });
             return data;
@@ -94,7 +89,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerDominio: ", error);
                 return null;
             });
             return data;
@@ -109,7 +103,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerDepartamentos: ", error);
                 return null
             });
             return data;
@@ -125,7 +118,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.validarBodegaCert: ", error);
                 return null;
             });
             return data;
@@ -140,7 +132,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.validarMareaProd: ", error);
                 return null;
             });
             return data;
@@ -160,7 +151,6 @@ sap.ui.define([
                     return null;
                 }
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerDatosDstrFlota: ", error);
                 return null
             });
             return data;
@@ -185,7 +175,6 @@ sap.ui.define([
                     return null;
                 }
             }).catch(function (error) {
-                console.log("ERROR: TasaBackendService.obtenerDatosDstrFlota 1 : ", error);
                 return null;
             });
             if (data) {
@@ -220,7 +209,6 @@ sap.ui.define([
                         return null;
                     }
                 }).catch(function (error) {
-                    console.log("ERROR: TasaBackendService.obtenerDatosDstrFlota 2 : ", error);
                     return null;
                 });
             }
@@ -242,7 +230,6 @@ sap.ui.define([
                     return null;
                 }
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerDepartamentos: ", error);
                 return null
             });
             return data;
@@ -260,7 +247,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function (error) {
-                console.log("ERROR: TasaBackendService.obtenerMareaAnterior : ", error);
                 return null;
             });
             return data;*/
@@ -280,7 +266,6 @@ sap.ui.define([
                     return null;
                 }
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerDepartamentos: ", error);
                 return null
             });
             return data;
@@ -298,7 +283,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function (error) {
-                console.log("ERROR: TasaBackendService.obtenerEventoAnterior : ", error);
                 return null;
             });
             return data;*/
@@ -318,7 +302,6 @@ sap.ui.define([
                     return null;
                 }
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerDepartamentos: ", error);
                 return null
             });
             return data;
@@ -412,7 +395,6 @@ sap.ui.define([
             var data = this.http(uri).post(null, sBody).then(function (response) {
                 return JSON.parse(response);
             }).catch(function (error){
-                console.log("ERROR : TasaBackendService.validarErroresDescarga - ", error);
                 return null;
             });
             return data;
@@ -428,7 +410,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerMedidaEspecie: ", error);
                 return null;
             });
             return data;
@@ -575,7 +556,6 @@ sap.ui.define([
                     return null;
                 }
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerDepartamentos: ", error);
                 return null
             });
             return data;
@@ -607,7 +587,6 @@ sap.ui.define([
                     return null;
                 }
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerDepartamentos: ", error);
                 return null
             });
             return data;
@@ -657,7 +636,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.consultarHorometro : ", error);
                 return null;
             });
             return data;
@@ -709,7 +687,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data.data;
             }).catch(function (error) {
-                console.log("ERROR: TasaBackendService.buscarEmbarcacion : ", error);
                 return null;
             });
             return data;
@@ -750,7 +727,6 @@ sap.ui.define([
                     return null;
                 }
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerDatosPlantaDist 1: ", error);
                 return null;
             });
             if(data && data.length > 0){
@@ -774,7 +750,6 @@ sap.ui.define([
                     }
                     return objReturn;
                 }).catch(function(error){
-                    console.log("ERROR: TasaBackendService.obtenerDatosPlantaDist 2: ", error);
                     return null;
                 });
             }
@@ -793,7 +768,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.buscarArmador: ", error);
                 return null;
             });
             return data;
@@ -813,7 +787,6 @@ sap.ui.define([
                     return null;
                 }
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerEmbarcacion: ", error);
                 return null;
             });
             return data;
@@ -831,7 +804,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerTemporadaVeda: ", error);
                 return null;
             });
             return data;
@@ -848,7 +820,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerReservas: ", error);
                 return null;
             });
             return data;
@@ -860,7 +831,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.crearActualizarMarea: ", error);
                 return null;
             });
             return data;
@@ -874,7 +844,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerConfigReservas: ", error);
                 return null;
             });
             return data;
@@ -889,7 +858,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerSuministro: ", error);
                 return null;
             });
             return data;
@@ -904,7 +872,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerEmbaComb: ", error);
                 return null;
             });
             return data;
@@ -916,7 +883,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.crearReserva: ", error);
                 return null;
             });
             return data;
@@ -928,7 +894,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.anularReservas: ", error);
                 return null;
             });
             return data;
@@ -940,7 +905,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.crearVenta: ", error);
                 return null;
             });
             return data;
@@ -952,7 +916,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.anularVenta: ", error);
                 return null;
             });
             return data;
@@ -974,7 +937,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerDepartamentos: ", error);
                 return null
             });
             return data;
@@ -988,7 +950,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.anularMarea: ", error);
                 return null
             });
             return data;
@@ -1005,7 +966,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerEveElim: ", error);
                 return null
             });
             return data;
@@ -1019,7 +979,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.ObtenerAlmacenExterno: ", error);
                 return null
             });
             return data;
@@ -1049,7 +1008,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.envioCorreoHoroAve: ", error);
                 return null;
             });
             return data;
@@ -1064,7 +1022,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerArmadorPropietario: ", error);
                 return null;
             });
             return data;
@@ -1079,7 +1036,6 @@ sap.ui.define([
                 var data = JSON.parse(response);
                 return data;
             }).catch(function(error){
-                console.log("ERROR: TasaBackendService.obtenerRolesUsuarios: ", error);
                 return null;
             });
             return data;

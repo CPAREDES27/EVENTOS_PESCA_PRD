@@ -65,13 +65,10 @@ sap.ui.define([
                 this.cargarMessagePopover();
 
                 //this.filtarMareas("001","0012");//por defecto muestra la primera opcion
-                //console.log("FECHA HOY: ", new Date());
                 var modelo = this.getOwnerComponent().getModel('DetalleMarea');
                 var dataModelo = modelo.getData();
                 var oStore = jQuery.sap.storage(jQuery.sap.storage.Type.Session);
                 oStore.put('InitData', dataModelo);
-
-                console.log("MODELO INICIAL: ", modelo);
 
             },
 
@@ -89,8 +86,6 @@ sap.ui.define([
                 // this.byId("tblMareasPropios").refreshRows();
                 // this.byId("tblMareasTerceros").refreshRows();
                 var oRenderer = sap.ushell.Container.getRenderer("fiori3");
-
-                console.log("RENDERER: ", oRenderer);
                 oRenderer.hideHeaderItem("backBtn", false);
 
                 BusyIndicator.hide();
@@ -103,7 +98,6 @@ sap.ui.define([
 
                 /*await this.getOwnerComponent().getServiceAsync("ShellUIService").then(function(oShellService) {
                     oShellService.setBackNavigation(function() {
-                        console.log("NAVEGAR ATRAS FIORI LAUNCHPAD");
                     });
                 });*/
 
@@ -132,7 +126,7 @@ sap.ui.define([
                     .then(resp => resp.json()).then(data => {
                         var host = this.url + data.data[0].LOW;
                         modeloConstantes2.setProperty("/HelpHost", host);
-                    }).catch(error => console.log(error)
+                    }).catch(error => {}
                     );
                 BusyIndicator.hide();
             },
@@ -183,7 +177,7 @@ sap.ui.define([
                     .then(resp => resp.json()).then(data => {
                         zinprpDom = data.data.find(d => d.dominio == "ZINPRP").data;
                         this.getOwnerComponent().getModel("ComboModel").setProperty("/IndPropiedad", zinprpDom);
-                    }).catch(error => console.log(error));
+                    }).catch(error => {});
 
                 const bodyAyudaPlantas = {
                     "nombreAyuda": "BSQPLANTAS",
@@ -198,7 +192,7 @@ sap.ui.define([
                     .then(resp => resp.json()).then(data => {
                         plantas = data.data;
                         this.getOwnerComponent().getModel("ComboModel").setProperty("/Plantas", plantas);
-                    }).catch(error => console.log(error));
+                    }).catch(error => {});
 
                 var modelo = this.getOwnerComponent().getModel("DetalleMarea");
                 var listaDominios = [{
@@ -245,7 +239,6 @@ sap.ui.define([
             },
 
             onSearchMarea: function (evt) {
-                //console.log(evt)
                 var selectedItem = evt.getParameter("item").getBindingContext("PlantasModel").getObject();
                 var modelo = this.getOwnerComponent().getModel("DetalleMarea");
                 var oStore = jQuery.sap.storage(jQuery.sap.storage.Type.Session);
@@ -290,10 +283,8 @@ sap.ui.define([
                     modeloDetalleMarea.setProperty("/Form/CDPTA", cdpta);
                     modeloDetalleMarea.refresh();
                 }).catch(function (error) {
-                    console.log("ERROR: Main.onInit - " + error);
                 });
                 BusyIndicator.hide();
-                console.log("MODELO ABRIR POUP: ", modeloDetalleMarea);
                 me.getDialog().open();
             },
 
@@ -317,10 +308,8 @@ sap.ui.define([
                 var embarcacion = formModel.getProperty("/Embarcacion");//modeloDetalleMarea.GETPROPERTY("/FormNewMarea/Planta");
                 var embaDesc = dataDetalleMarea.FormNewMarea.EmbarcacionDesc
                 var planta = sap.ui.getCore().byId("cbxPlantas").getSelectedKey();
-                console.log(embarcacion);
                 if (embarcacion && planta) {
                     var bOk = await this.validaBodMar(embarcacion, planta, embaDesc);
-                    console.log("validaBodMar: ", bOk);
                     if (bOk) {
                         this.getOwnerComponent().setModel(models.createInitModel(), "DetalleMarea");
                         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -389,7 +378,7 @@ sap.ui.define([
                     }
                 } else {
                     BusyIndicator.hide();
-                    MessageBox.error(this.oBundle.getText("EMBANOPER", [selectedItem.NMEMB]));
+                    MessageBox.error(this.oBundle.getText("EMBANOPER", [embarcacion]));
                 }
             },
 
@@ -454,7 +443,6 @@ sap.ui.define([
                     }
                 } else {
                     BusyIndicator.hide();
-                    console.log("ERROR: Main.onEditarCrearMarea - " + this.oBundle.getText("ERRORITEMSELECCIONADO"));
                 }*/
 
                 /*var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -486,7 +474,6 @@ sap.ui.define([
                 await Promise.resolve(obterRoles).then(values => {
                     lstRoles =  values;
                 }).catch(reason => {
-                    console.log(reason);
                 });
                 return lstRoles;
                 //return [];//este metodo debe devolver la lista de roles asignado. Ejem. ["Administrador", "Operador"]
@@ -515,8 +502,6 @@ sap.ui.define([
                     //modelo = this.getView().byId("tblMareasTerceros").getModel();
                     data = modelo.getProperty("/TercerosFiltro");
                 }
-
-                //console.log("DATA: ", data);
 
                 //if (modelo) {
                 //var data = modelo.getData();
@@ -619,14 +604,12 @@ sap.ui.define([
                 //}
 
                 //await FormCust.buscarArmador(object.CDEMB);
-                /*var s = await FormCust.consultarPermisoZarpe(object.CDEMB)
-                console.log(s);*/
+                /*var s = await FormCust.consultarPermisoZarpe(object.CDEMB);*/
                 //var a  = new FormCust;
                 //MainComp.FormCust().verificarCambiosCodigo("EMB", formModel.getProperty("/Embarcacion"))
                 //FormCust.verificarCambiosCodigo("EMB", formModel.getProperty("/Embarcacion"));
 
                 /*var indices = evt.mParameters.listItem.oBindingContexts.ComboModel.sPath.split("/")[2];
-                console.log(indices);
 
                 var data = this.getView().getModel("ComboModel").oData.Embarcaciones[indices].CDEMB;
                 sap.ui.getCore().byId("txtEmba").setValue(data);
@@ -744,7 +727,6 @@ sap.ui.define([
                         body: JSON.stringify(body)
                     })
                     .then(resp => resp.json()).then(data => {
-                        console.log("Emba: ", data);
                         embarcaciones = data.data;
 
                         this.getOwnerComponent().getModel("ComboModel").setProperty("/Embarcaciones", embarcaciones);
@@ -788,7 +770,7 @@ sap.ui.define([
                         //sap.ui.getCore().byId("comboPaginacion").setVisible(true);
 
                         BusyIndicator.hide();
-                    }).catch(error => console.log(error));
+                    }).catch(error => {});
             },
 
             onChangePag: function () {
@@ -845,7 +827,6 @@ sap.ui.define([
                         body: JSON.stringify(body)
                     })
                     .then(resp => resp.json()).then(data => {
-                        console.log("Emba: ", data);
                         embarcaciones = data.data;
 
                         this.getOwnerComponent().getModel("ComboModel").setProperty("/Embarcaciones", embarcaciones);
@@ -854,7 +835,7 @@ sap.ui.define([
                         this.getOwnerComponent().getModel("ComboModel").setProperty("/TituloEmba", tituloTablaEmba);
                         sap.ui.getCore().byId("comboPaginacion").setSelectedKey(this.currentPage);
                         BusyIndicator.hide();
-                    }).catch(error => console.log(error));
+                    }).catch(error => {});
             },
 
             onCerrarEmba: function (oEvent) {
@@ -894,11 +875,9 @@ sap.ui.define([
             },
 
             onSelectItemList: function (evt) {
-                //console.log(evt);
                 var listItem = evt.getSource();
                 var expanded = listItem.getExpanded();
                 listItem.setExpanded(!expanded);
-                console.log(listItem);
             },
 
             onAnularMarea: async function (evt) {
@@ -977,7 +956,6 @@ sap.ui.define([
                 
             },
             cargarFilas : function(event) {
-                console.log(event);
                 let otable = event.getSource();
                 let lista  = event.getSource().getBinding().oList;
                 let rows_d = event.getSource().getAggregation("rows"); 
@@ -1028,10 +1006,8 @@ sap.ui.define([
                     type: 'GET',
                     contentType: 'application/x-www-form-urlencoded',
                     success: function(data){
-                        console.log("success"+data);
                     },
                     error: function(e){
-                        console.log("error: "+e);
                     }
                   });*/
 
@@ -1067,15 +1043,6 @@ sap.ui.define([
                 const sUserFullName = oUserInfo.getFullName();
                 const sUser = oUserInfo.getUser();
 
-
-                console.log("oUserInfo: ", oUserInfo);
-                console.log("sUserId: ", sUserId);
-                console.log("sUserEmail: ", sUserEmail);
-                console.log("sUserFirstName: ", sUserFirstName);
-                console.log("sUserLastName: ", sUserLastName);
-                console.log("sUserFullName: ", sUserFullName);
-                console.log("sUser: ", sUser);*/
-
                 /*
                 $.ajax({
                     type: 'GET',
@@ -1083,11 +1050,8 @@ sap.ui.define([
                     dataType: 'json',
                     beforeSend: function(jqXHR, settings) {
                        // setting a timeout
-                       console.log("jqXHR: ", jqXHR);
-                       console.log("settings: ", settings);
                     },
                     success: function(data) {
-                       console.log(data);
                     },
                     error: function(xhr) { // if error occured
                        

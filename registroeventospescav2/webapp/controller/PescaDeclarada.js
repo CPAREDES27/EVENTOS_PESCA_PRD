@@ -29,7 +29,6 @@ sap.ui.define([
         },
 
         onButtonPress3:function(o_event){
-            console.log(o_event);
         },
 
         getcontrol:function(){

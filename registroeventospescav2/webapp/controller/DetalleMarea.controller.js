@@ -43,7 +43,6 @@ sap.ui.define([
         },
 
         _onPatternMatched: async function (oEvent) {
-            //console.log("PARAM ROUTER: ", oEvent);
             /*var modeloMarea = this.getOwnerComponent().getModel("DetalleMarea");
             var indicador = modeloMarea.getProperty("/Form/INDICADOR");*/
 
@@ -91,7 +90,6 @@ sap.ui.define([
         onAfterRendering: function () {
 
             var modelo = this.getOwnerComponent().getModel("DetalleMarea");
-            console.log("MODELO: ", modelo);
 
             /*
             var tab = this.getView().byId("itbDetalleMarea");
@@ -152,7 +150,6 @@ sap.ui.define([
                     title: "Descartar Cambios",
                     onClose: function(evt){
                         if(evt == "OK"){
-                            console.log("entrooooooo");
                             var initData = oStore.get('InitData');
                             modelo.setData(initData);
                             modelo.refresh();
@@ -334,7 +331,6 @@ sap.ui.define([
         },
 
         onEliminarEvento: async function (evt) {
-            //console.log(evt.getSource().getParent());
             var modelo = this.getOwnerComponent().getModel("DetalleMarea");
             var eventos = modelo.getProperty("/Eventos/Lista");
             var confirmElimEve = this.oBundle.getText("CONFIRMELIMEVE")
@@ -507,7 +503,6 @@ sap.ui.define([
             }
 
             modelo.refresh();
-            console.log("MODELO: ", modelo);
             BusyIndicator.hide();
         },
 
@@ -597,7 +592,6 @@ sap.ui.define([
                         }
                         modeloDetalleMarea.refresh();
                     }).catch(function (error) {
-                        console.log("Error: DetalleMarea.validarReservaCombustible - ", error);
                     });
                 }
             }
@@ -707,7 +701,6 @@ sap.ui.define([
                     }
                 }
             }).catch(function (error) {
-                console.log("ERROR: DetalleMarea.obtenerDatosDistribFlota - ", error);
             });
         },
 
@@ -717,14 +710,12 @@ sap.ui.define([
             var dataDetalleMarea = modeloDetalleMarea.getData();
             var estMar = dataDetalleMarea.Form.ESMAR;
             var currentUser = await this.getCurrentUser();
-            console.log("Est Mar: " + estMar);
             if (estMar == "A") {
                 var embarcacion = dataDetalleMarea.Form.CDEMB;
                 var marea = dataDetalleMarea.Form.NRMAR;
                 TasaBackendService.obtenerMareaAnterior(marea, embarcacion, currentUser).then(function (response) {
                     //preparar servicio para obtener marea anterior
                 }).catch(function (error) {
-                    console.log("ERROR: DetalleMarea.obtenerDatosMareaAnt - ", error);
                 });
             }
         },
@@ -773,7 +764,6 @@ sap.ui.define([
             if (response) {
                 var eventos = response.data[0].data;
                 if (eventos) {
-                    //console.log("Eventos: ", eventos);
                     if (motivo == "1" || motivo == "2" || motivo == "4" || motivo == "5" || motivo == "6") {
                         for (let index = 0; index < eventos.length; index++) {
                             const element = eventos[index];
@@ -834,7 +824,6 @@ sap.ui.define([
             }
 
             modelo.setProperty("/Utils/MessageItemsDM", []);
-            console.log("BORRA FECHA ETA AQUI 1");
             modelo.setProperty("/Config/visibleFecHoEta", false);
             modelo.setProperty("/Config/visibleFechIni", false);
             modelo.setProperty("/Config/visibleFechFin", false);
@@ -1147,7 +1136,6 @@ sap.ui.define([
         onProcesarSum: async function () {
             var modelo = this.getOwnerComponent().getModel("DetalleMarea");
             var inprp = modelo.getProperty("/Form/INPRP");
-            console.log("IND PROPIEDAD: ", inprp);
             if (inprp == "P") {
                 await this.onReservar()
             }
@@ -1169,7 +1157,6 @@ sap.ui.define([
                     initialFocus: "Aceptar",
                     emphasizedAction: "Aceptar",
                     onClose: async function (evt) {
-                        console.log(evt);
                         if (evt == "Aceptar") {
                             BusyIndicator.hide();
                             await me.SaveReserva();
@@ -1197,7 +1184,6 @@ sap.ui.define([
                     initialFocus: "Aceptar",
                     emphasizedAction: "Aceptar",
                     onClose: async function (evt) {
-                        console.log(evt);
                         if (evt == "Aceptar") {
                             BusyIndicator.hide();
                             await me.SaveVentaComb();
@@ -1613,10 +1599,8 @@ sap.ui.define([
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 error: function (err) {
-                    console.log("ERROR USER INFO: ", err);
                 },
                 success: function (data, textStatus, jqXHR) {
-                    console.log("USER INFO: ", data);
                 }
 
             });*/

@@ -39,16 +39,13 @@ sap.ui.define([
             }
             this.ctr = oThis;
             this._navBio = idBiometria;
-            console.log("TextoNav : " + idBiometria);
             this._oView.byId("table_biometria").destroyColumns();
             this.getTableDefault();
 
         },
 
         onButtonPress3:function(){
-            //console.log(o_event);
             let mod = this.ctr.getOwnerComponent().getModel("DetalleMarea");
-            console.log("TextoNav2 : " + this._navBio);
             var i_tme =  this._oView.byId("idTallaMenor").getValue();
             var i_tma =  this._oView.byId("idTallaMayor").getValue();
             this.ctr._listaEventos[this.ctr._elementAct].TallaMin = i_tme;
@@ -73,7 +70,6 @@ sap.ui.define([
                         if(i==d1){v_sumMen = Number(d1);}
                         else{v_sumMen = Number(v_sumMen) + Number('0.5');}
     
-                        console.log("ddd : " + v_sumMen);
                         let idCol = "col_" + i;
                         this.setColumnDinamic(v_sumMen,idCol,idCol);
                     }
@@ -87,7 +83,6 @@ sap.ui.define([
                         if(i==d1){v_sumMen = Number(d1);}
                         else{v_sumMen = Number(v_sumMen) + Number('1');}
     
-                        console.log("ddd : " + v_sumMen);
                         let idCol = "col_" + i;
                         this.setColumnDinamic(v_sumMen,idCol,idCol);
                     }
@@ -193,7 +188,6 @@ sap.ui.define([
                 let o_Source = event.getSource();
                 let ser_medidaMin = await TasaBackendService.obtenerMedidaEspecie(col_CodEspecie.getProperty("text"), this.ctr.getCurrentUser());
                 TallaMinPorcJuvenil = Number(ser_medidaMin.data[0].TMMIN);
-                console.log(o_Source.getParent().getParent().getAggregation("columns")[0].getAggregation("label").getProperty("text"));
             
                 let sumaTotal_Muestra = Number(0);
                 let sumaMuestraJuvenil = Number(0);
@@ -301,7 +295,6 @@ sap.ui.define([
 			var sValue = oEvent.getParameter("value");
             var oFilter = new Filter("descripcion", FilterOperator.Contains, sValue);
 			var oBinding = oEvent.getSource().getBinding("items");
-            console.log(oBinding);
             oBinding.filter([oFilter]);
             if(oBinding.aLastContextData.length == 0){
                 var oFilter2 = new Filter("id", FilterOperator.Contains, sValue);
@@ -520,7 +513,6 @@ sap.ui.define([
                                 }else if(key_mn > tmy){
                                     tmy = key_mn;
                                 }
-                                console.log(key_bio[i]);
                             }
                         }
                         this._oView.byId("idTallaMenor").setValue(tmn);

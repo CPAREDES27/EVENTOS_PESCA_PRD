@@ -75,7 +75,6 @@ sap.ui.define([
             var oStore = jQuery.sap.storage(jQuery.sap.storage.Type.session);
             oStore.put("flagFragment", true);
             this.oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
-            console.log(this.getOwnerComponent().getModel("DetalleMarea"));
             this.cargarMessagePopover();
             //this.router.attachRouteMatched(this._onRouteMatched,this );
 
@@ -83,7 +82,6 @@ sap.ui.define([
         },
         _onRouteMatched :async function(oEvent){
                 let urlIntance = "" +  window.location;
-                //console.log("vista : " + oEvent.getParameter("name") + " - URL : " + urlIntance);&& oEvent.getParameter("name") == 
                 if(urlIntance.indexOf('DetalleEvento') !== -1 ){
                     this._vista = "DetalleEvento";
                 }else{
@@ -108,14 +106,12 @@ sap.ui.define([
                                 detalleMarea.FormEditado = true;
                                 this.getView().byId("Tab_eventos").setSelectedKey("");
                                 await this.cargarValoresFormateados();
-                                console.log("MOD: ", mod);
                                 this.getView().getModel("eventos").updateBindings(true);
                                 //NAVEGACION SI VALORES SON CORRECTOS
                                 this.router.navTo("DetalleMarea");
                                 this._vista = "";
                             }
                         }
-                        console.log("Saliendo de ventana de detalle evento");
                     }
                 }
                 // if (oEvent.getParameter("name") !== "DetalleMarea") {
@@ -155,7 +151,6 @@ sap.ui.define([
                                     detalleMarea.FormEditado = true;
                                     this.getView().byId("Tab_eventos").setSelectedKey("");
                                     await this.cargarValoresFormateados();
-                                    console.log("MOD: ", mod);
                                     this.getView().getModel("eventos").updateBindings(true);
                                     //NAVEGACION SI VALORES SON CORRECTOS
                                     this._vista = "";
@@ -166,7 +161,6 @@ sap.ui.define([
         },
         
         pruebaRet :function(oEvent){
-            console.log("navegacion :c");
         },
         _selectItemWithId : function(id) {
             //implementation
@@ -175,10 +169,7 @@ sap.ui.define([
          * @override
          */
         onExit: function() {
-            console.log("SALIENDO DEL COMPONENTE DE EVENTOS");
-            //MainComp.prototype.onExit.apply(this, arguments);
             
-        
         },
         _onObjectMatched: async function (oEvent) {
             if (oEvent.getParameter("name") !== navigation.Constants.EventDetailFragment) {
@@ -186,13 +177,11 @@ sap.ui.define([
             }
             
             // let urlIntance = "" +  window.location;
-            // //console.log("vista : " + oEvent.getParameter("name") + " - URL : " + urlIntance);&& oEvent.getParameter("name") == 
             // if(urlIntance.indexOf('DetalleEvento') !== -1 ){
             //     this._vista = "DetalleEvento";
             // }else{
             //     if(this._vista === "DetalleEvento"){
             //         //window.location = "http://localhost:8080/index.html#/DetalleEvento";
-            //         console.log("Saliendo de ventana de detalle evento");
             //         return;
             //     }
             //     this._vista = "";
@@ -428,7 +417,6 @@ sap.ui.define([
 
         obtenerTab: function (event) {
             let tab_evento_sel = event.getParameter("selectedItem").getProperty("text");
-            console.log(event.getParameter("selectedItem").getProperty("text"));
             this.Dat_General.onActionSelectTab(tab_evento_sel,event);
         },
         cargaModelos: function (v_this) {
@@ -523,7 +511,6 @@ sap.ui.define([
             ]).then(values => {
                 self._tipoPreservacion = JSON.parse(values[0]).data[0].CDTPR;
                 self._listasServicioCargaIni = values;
-                console.log(self._listasServicioCargaIni);
                 return true;
             }).catch(reason => {
                 return false;
@@ -536,7 +523,6 @@ sap.ui.define([
             let TipoCons = mod.getProperty("/Utils/TipoConsulta");
             var oStore = jQuery.sap.storage(jQuery.sap.storage.Type.session);
             let flag = oStore.get("flagFragment");
-            console.log("flag : " + flag);
             if (flag) {
 
                 var o_tabGeneral = this.getView().byId("idGeneral");
@@ -664,7 +650,6 @@ sap.ui.define([
 
 
         _onButtonPress: function (o_event) {
-            console.log(o_event);
         },
 
         prepararRevisionEvento: async function (soloDatos) {
@@ -1751,7 +1736,6 @@ sap.ui.define([
                     detalleMarea.FormEditado = true;
                     this.getView().byId("Tab_eventos").setSelectedKey("");
                     await this.cargarValoresFormateados();
-                    console.log("MOD: ", mod);
                     this.getView().getModel("eventos").updateBindings(true);
                     mod.refresh();
                      //NAVEGACION SI VALORES SON CORRECTOS

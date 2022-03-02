@@ -18,11 +18,9 @@ sap.ui.define([
             /*this.router.navTo("DetalleEventoExt", {
                 nrmar: "123456"
             })*/
-            console.log("ENTRA");
         },
 
         _onPatternMatched: function(param){
-            console.log("PARAMS: ", param);
         }
 
 

@@ -31,12 +31,10 @@ sap.ui.define([
             }
             this._bInit = false;
             this.ctr = o_this;
-            console.log("entrooooo");
 
 
         },
         onButtonPress3: function (o_event) {
-            console.log(o_event);
         },
 
         getcontrol: function () {
@@ -121,7 +119,6 @@ sap.ui.define([
         },
 
         onActionVerMotiLimitacion: function () {
-            console.log("onActionVerMotiLimitacion");
             var eventoActual = this.ctr._listaEventos[this.ctr._elementAct];
             var estOper = eventoActual.ESOPE;
             var visible = this.ctr.modeloVisible;//nodo visible
@@ -398,7 +395,7 @@ sap.ui.define([
                 var capaTan = response.data[0].CDTAN;
                 capaTanEmba = Number(capaTan);
             }).catch(function(error){
-                console.log("ERROR: Horometro.getCapaTanEmba - ", error );
+                
             });
             return capaTanEmba;
         },
@@ -445,7 +442,6 @@ sap.ui.define([
             for (var i = 0; i < oSelectedItem2.length; i++) {
                 //var prop = oSelectedItem2[i].mProperties;
                 //prop.selected = false;
-                //console.log(prop);
             }
             //this._oView.getModel("eventos").updateBindings(true);
 
@@ -453,9 +449,6 @@ sap.ui.define([
             // for (var i = 0; i < oSelectedItem.length; i++) {
             //     var item1 = oSelectedItem[i].setSelected(false).setEditable(false);
             //     var cells = item1.getCells();
-            //     console.log(cells[0].getText());
-            //     console.log(cells[1].getValue());
-            //     console.log(cells[2].getText());
 
             // }
         },

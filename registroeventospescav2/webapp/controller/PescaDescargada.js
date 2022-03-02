@@ -62,7 +62,6 @@ sap.ui.define([
 
         },
         onButtonPress3: function (o_event) {
-            console.log(o_event);
         },
 
         getcontrol: function () {
@@ -173,7 +172,7 @@ sap.ui.define([
         validarDatosEvento:async function(){
             var DetalleMarea = this._controler._FormMarea;//modelo detalle marea
             var soloLectura = this._controler._soloLectura;//modelo data session
-            var tieneErrores = DetalleMarea.TieneErrores;//modelo detalle marea
+            var tieneErrores = DetalleMarea.TERRORES;//modelo detalle marea
             var listaEventos = this._controler._listaEventos;
             var eventoActual = this._controler._listaEventos[this._controler._elementAct];//modelo evento actual
             var visible = this._controler.modeloVisible;//modelo visible
@@ -548,9 +547,6 @@ sap.ui.define([
             let tipo_Pesca = sap.ui.getCore().byId("pbd_tipo_pesca").getSelectedKey();
             let estado = sap.ui.getCore().byId("pbd_estado").getSelectedKey();
 
-            console.log("dato recuperado : " + nro_descarga + " - " + cod_embarcacion + " - " + matricula + " - " + nom_embarcacion + " - "
-            + cod_planta + " - " + nom_planta + " - " + fecha_inicio + " - " + tipo_Pesca + " - " + estado);
-
             if(tipo_Pesca){
                 options.push({
                     cantidad: "1",
@@ -641,7 +637,6 @@ sap.ui.define([
                 });
           
             }
-            console.log(this._controler._nroEvento);
             let s = await this.cargar_servicios_pescaDesc(matricula, nom_embarcacion, cod_planta, nom_planta, fecha_inicio, this._controler.getCurrentUser(),nro_descarga,estado);
             let listaDes_RFC = JSON.parse(this._DataPopup[0]).data;
             let lista_popup = []
@@ -688,9 +683,6 @@ sap.ui.define([
             let cod_planta = sap.ui.getCore().byId("pbdCHD_cod_planta").getValue();
             let nom_planta = sap.ui.getCore().byId("pbdCHD_nom_planta").getValue();
             let fecha_inicio = sap.ui.getCore().byId("pbdCHD_fecha_inicio").getValue();
-
-            console.log("dato recuperado : " + matricula + " - " + nom_embarcacion + " - "
-            + cod_planta + " - " + nom_planta + " - " + fecha_inicio);
 
             if(matricula){
                 options.push({
@@ -742,7 +734,6 @@ sap.ui.define([
                 });
           
             }
-            console.log(this._controler._nroEvento);
             let s = await this.cargar_servicios_pescaDescCHD(options);
             this._oView.getModel("popup_descarga").setProperty("/ListaDescargas", JSON.parse(this._DataPopup[0]).data);
             this._oView.getModel("popup_descarga").updateBindings(true);
@@ -755,7 +746,6 @@ sap.ui.define([
             var s1 = TasaBackendService.obtenerListaDescargaPopUp(matricula, nom_embarcacion, cod_planta, nom_planta, fecha_inicio, user,nro_descarga,estado);
             return Promise.all([s1]).then(values => {
                 self._DataPopup = values;
-                console.log(self._DataPopup);
                 return true;
             }).catch(reason => {
                 return false;
@@ -767,7 +757,6 @@ sap.ui.define([
             var s1 = TasaBackendService.obtenerListaDescargaCHDPopUp(options);
             return Promise.all([s1]).then(values => {
                 self._DataPopup = values;
-                console.log(self._DataPopup);
                 return true;
             }).catch(reason => {
                 return false;
@@ -794,7 +783,6 @@ sap.ui.define([
             // }
 
             this.getDialogConsultaDescarga().close();
-            //console.log("Holaaaaaaaaaaaaaa");
         },
         eliminarDesacarga: async function(event){
             let pescaDesc = this._oView.getModel("eventos").getData().ListaPescaDescargada;
@@ -1000,7 +988,6 @@ sap.ui.define([
             this._oView.getModel("popup_descarga").setProperty("/det_Estado", data.DESC_ESDES);
             this._oView.getModel("popup_descarga").setProperty("/det_Header", data.CDPTA);
 
-            //console.log("Holaaaaaaaaaaaaaa");
         }
 
 
